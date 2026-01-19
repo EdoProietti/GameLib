@@ -1,0 +1,21 @@
+package Model;
+
+public class Notify {
+    // l'attributo game è di tipo final perché quando un publisher segna come letto la notifica
+    // la notifica viene tolta dalla lista delle notifiche del publisher.
+    private final Game game;
+    private int sold;
+
+    public Notify(Game game){
+        this.game = game;
+        this.sold = 1;
+    }
+
+    public void addCopySold(){
+        this.sold++;
+    }
+
+    public Game getGame(){
+        return this.game;
+    }
+}
