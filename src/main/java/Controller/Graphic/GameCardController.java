@@ -13,6 +13,10 @@ public class GameCardController {
     public Button btnAddToCart;
     @FXML
     private Label gameTitle;
+    @FXML
+    private Label genreGame;
+    @FXML
+    private Label gamePrice;
 
     public void setData(String title) {
         gameTitle.setText(title);

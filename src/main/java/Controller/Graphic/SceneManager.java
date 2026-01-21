@@ -1,5 +1,6 @@
 package Controller.Graphic;
 
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class SceneManager {
-    public static void swichScene(ActionEvent event, String fxmlPath) {
+    public static void swichScene(Event event, String fxmlPath) {
         try {
             // Carichiamo il file FXML
             Parent root = FXMLLoader.load(Objects.requireNonNull(SceneManager.class.getResource(fxmlPath)));

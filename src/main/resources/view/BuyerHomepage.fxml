@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="650.0" prefWidth="950.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.BuyerHomeController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="20.0" style="-fx-background-color: #2a2a3d; -fx-border-color: #00d4ff; -fx-border-width: 0 0 2 0;">
+            <padding>
+                <Insets left="25.0" right="25.0" />
+            </padding>
+            <children>
+                <Label text="GameLib" textFill="#00d4ff">
+                    <font>
+                        <Font name="System Bold" size="26.0" />
+                    </font>
+                </Label>
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Button onAction="#goToCart" style="-fx-background-color: #00d4ff; -fx-background-radius: 15; -fx-cursor: hand;" text="🛒 Carrello" textFill="#1e1e2f">
+                    <font> <Font name="System Bold" size="14.0" /> </font>
+                    <padding>
+                        <Insets left="15.0" right="15.0" top="8.0" bottom="8.0"/>
+                    </padding>
+                </Button>
+
+                <Button onAction="#handleLogout" style="-fx-background-color: #ff4c4c; -fx-background-radius: 10;" text="Esci" textFill="WHITE" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;">
+            <content>
+                <VBox spacing="35.0">
+                    <padding>
+                        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+                    </padding>
+                    <children>
+                        <VBox spacing="5.0">
+                            <children>
+                                <Label text="Bentornato nel tuo GameLib!" textFill="WHITE">
+                                    <font> <Font name="System Bold" size="28.0" /> </font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                        <HBox spacing="25.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="160.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: #2a2a3d; -fx-background-radius: 20; -fx-border-color: #3d3d5c; -fx-border-radius: 20; -fx-cursor: hand;" onMouseClicked="#goToStore">
+                                    <children>
+                                        <Label text="🎮" textFill="#00d4ff"> <font> <Font size="45.0" /> </font> </Label>
+                                        <Label text="Scopri Giochi" textFill="WHITE"> <font> <Font name="System Bold" size="14.0" /> </font> </Label>
+                                    </children>
+                                </VBox>
+
+                                <VBox alignment="CENTER" prefHeight="160.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: #2a2a3d; -fx-background-radius: 20; -fx-border-color: #3d3d5c; -fx-border-radius: 20; -fx-cursor: hand;" onMouseClicked="#goToLibrary">
+                                    <children>
+                                        <Label text="📚" textFill="#00d4ff"> <font> <Font size="45.0" /> </font> </Label>
+                                        <Label text="Apri Libreria" textFill="WHITE"> <font> <Font name="System Bold" size="14.0" /> </font> </Label>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <VBox spacing="20.0">
+                            <children>
+                                <Label text="Titoli in Evidenza" textFill="#00d4ff">
+                                    <font> <Font name="System Bold" size="22.0" /> </font>
+                                </Label>
+                                <FlowPane fx:id="featuredGamesPane" hgap="20.0" vgap="20.0" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

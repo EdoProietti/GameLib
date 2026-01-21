@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="550.0" prefWidth="450.0" spacing="20.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.RegisterController">
+    <children>
+        <Label text="Crea Account" textFill="#00d4ff">
+            <font>
+                <Font name="System Bold" size="32.0" />
+            </font>
+        </Label>
+
+        <VBox alignment="CENTER" spacing="12.0" maxWidth="300.0">
+            <children>
+                <Label text="Username" textFill="WHITE" alignment="CENTER_LEFT" maxWidth="Infinity" />
+                <TextField fx:id="userField" promptText="Scegli uno username" style="-fx-background-color: #2a2a3d; -fx-text-fill: white; -fx-background-radius: 10;" prefHeight="35.0" />
+
+                <Label text="Email" textFill="WHITE" alignment="CENTER_LEFT" maxWidth="Infinity" />
+                <TextField fx:id="emailField" promptText="esempio@mail.com" style="-fx-background-color: #2a2a3d; -fx-text-fill: white; -fx-background-radius: 10;" prefHeight="35.0" />
+
+                <Label text="Password" textFill="WHITE" alignment="CENTER_LEFT" maxWidth="Infinity" />
+                <PasswordField fx:id="passField" promptText="Minimo 8 caratteri" style="-fx-background-color: #2a2a3d; -fx-text-fill: white; -fx-background-radius: 10;" prefHeight="35.0" />
+
+                <Label text="Conferma Password" textFill="WHITE" alignment="CENTER_LEFT" maxWidth="Infinity" />
+                <PasswordField fx:id="confirmPassField" promptText="Ripeti password" style="-fx-background-color: #2a2a3d; -fx-text-fill: white; -fx-background-radius: 10;" prefHeight="35.0" />
+
+                <Button mnemonicParsing="false" onAction="#handleRegister" prefHeight="45.0" prefWidth="300.0" style="-fx-background-color: #00d4ff; -fx-background-radius: 20; -fx-cursor: hand;" text="Registrati ora">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets top="15.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+
+        <Button mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: transparent;" text="Hai già un account? Accedi" textFill="#00d4ff" underline="true" />
+
+        <Label fx:id="statusLabel" textFill="RED" wrapText="true" textAlignment="CENTER" />
+
+        <Button mnemonicParsing="false" onAction="#handleBack" style="-fx-background-color: transparent;" text="&lt; Torna alla Home" textFill="WHITE" />
+    </children>
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+</VBox>

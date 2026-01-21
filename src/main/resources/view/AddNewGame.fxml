@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.AddGameController">
+    <children>
+        <Label text="Aggiungi Nuovo Gioco" textFill="#00d4ff">
+            <font>
+                <Font name="System Bold" size="28.0" />
+            </font>
+        </Label>
+
+        <GridPane hgap="15.0" vgap="15.0" maxWidth="400.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="120.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" prefWidth="280.0" />
+            </columnConstraints>
+            <children>
+                <Label text="Titolo:" textFill="WHITE" GridPane.rowIndex="0" />
+                <TextField fx:id="titleField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Genere:" textFill="WHITE" GridPane.rowIndex="1" />
+                <ComboBox fx:id="genreCombo" prefWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Piattaforma:" textFill="WHITE" GridPane.rowIndex="2" />
+                <ComboBox fx:id="platformCombo" prefWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <Label text="Prezzo (€):" textFill="WHITE" GridPane.rowIndex="3" />
+                <TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            </children>
+        </GridPane>
+
+        <HBox alignment="CENTER" spacing="20.0">
+            <children>
+                <Button onAction="#handleCancel" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: transparent; -fx-border-color: #ff4c4c; -fx-border-radius: 20;" text="Annulla" textFill="#ff4c4c" />
+                <Button onAction="#handleSaveGame" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #00d4ff; -fx-background-radius: 20; -fx-cursor: hand;" text="Salva Gioco" textFill="#1e1e2f">
+                    <font> <Font name="System Bold" size="14.0" /> </font>
+                </Button>
+            </children>
+            <VBox.margin> <Insets top="10.0" /> </VBox.margin>
+        </HBox>
+
+        <Label fx:id="statusLabel" textFill="#00ff00" />
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>

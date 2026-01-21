@@ -18,6 +18,6 @@ public class HomeController {
 
     @FXML
     private void handleLogin(ActionEvent event) {
-        System.out.println("Feature login under development");
+        SceneManager.swichScene(event, "/view/Login.fxml");
     }
 }
