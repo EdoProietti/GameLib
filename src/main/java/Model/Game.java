@@ -8,12 +8,14 @@ public class Game {
     private BigDecimal price;
     private Publisher publisher;
     private ArrayList<Platform> platforms;
+    private Genre genre;
 
-    public Game(String title, BigDecimal price, Publisher publisher){
+    public Game(String title, BigDecimal price, Publisher publisher, Genre genre){
         this.title = title;
         this.price = price;
         this.publisher = publisher;
         this.platforms = new ArrayList<Platform>();
+        this.genre = genre;
     }
 
     public void addPlatform(Platform platform){
@@ -53,4 +55,8 @@ public class Game {
     public void setPublisher(Publisher publisher){
         this.publisher = publisher;
     }
+
+    public Genre getGenre(){return this.genre;}
+
+    public void setGenre(Genre genre){this.genre = genre;}
 }

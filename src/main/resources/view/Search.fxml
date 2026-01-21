@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.SearchController">
+
+    <left>
+        <VBox prefWidth="200.0" spacing="15.0" style="-fx-background-color: #2a2a3d; -fx-background-radius: 0 15 15 0;">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+                <Label text="Filtri" textFill="#00d4ff">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+
+                <Label text="Genere" textFill="WHITE" />
+                <ComboBox fx:id="filterGenre" prefWidth="160.0" promptText="Scegli..." />
+
+                <Label text="Piattaforma" textFill="WHITE" />
+                <ComboBox fx:id="filterPlatform" prefWidth="160.0" promptText="Scegli..." />
+
+                <Label text="Prezzo Max" textFill="WHITE" />
+                <Slider fx:id="priceSlider" max="150.0" showTickLabels="true" value="60.0" />
+                <Label fx:id="priceLabel" text="60€" textFill="#00d4ff" />
+
+                <Button mnemonicParsing="false" onAction="#executeSearch" prefWidth="160.0" style="-fx-background-color: #00d4ff;" text="Applica Filtri" textFill="#1e1e2f">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="20.0">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                    <children>
+                        <Button onAction="#handleBack" style="-fx-background-color: transparent; -fx-border-color: #00d4ff;" text="&lt; Indietro" textFill="#00d4ff" />
+                        <TextField fx:id="searchField" promptText="Cerca gioco..." HBox.hgrow="ALWAYS" />
+                    </children>
+                </HBox>
+
+                <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                    <content>
+                        <FlowPane fx:id="resultsPane" hgap="15.0" vgap="15.0" style="-fx-background-color: #1e1e2f;" />
+                    </content>
+                </ScrollPane>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

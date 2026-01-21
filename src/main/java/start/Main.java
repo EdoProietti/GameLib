@@ -1,10 +1,32 @@
 package start;
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.printf("Hello and welcome!");
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("i = " + i);
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.util.Objects;
+
+
+public class Main extends Application {
+    @Override
+    public void start(Stage primaryStage){
+        try{
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/Homepage.fxml")));
+            Scene scene = new Scene(root);
+            primaryStage.setTitle("GameLib - La tua Libreria Videogiochi");
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+            primaryStage.show();
+
+        } catch (Exception e) {
+            System.err.println("Errore fatale: Impossibile caricare la Home Page.");
+            e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        // Avvia l'applicazione JavaFX
+        launch(args);
     }
 }
