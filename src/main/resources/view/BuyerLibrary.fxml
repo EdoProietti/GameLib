@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="600.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.BuyerLibraryController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <children>
+                <Button onAction="#handleBack" style="-fx-background-color: transparent; -fx-border-color: #00d4ff; -fx-border-radius: 10;" text="&lt; Store" textFill="#00d4ff" />
+                <Label text="La Mia Libreria" textFill="WHITE">
+                    <font><Font name="System Bold" size="28.0" /></font>
+                </Label>
+            </children>
+        </HBox>
+
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+            <content>
+                <FlowPane fx:id="gamesGrid" hgap="20.0" vgap="20.0" style="-fx-padding: 10;">
+                </FlowPane>
+            </content>
+        </ScrollPane>
+    </children>
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+</VBox>

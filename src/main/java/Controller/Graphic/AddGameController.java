@@ -1,5 +1,6 @@
 package Controller.Graphic;
 
+import Bean.GameBean;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -14,6 +15,8 @@ public class AddGameController {
     @FXML private TextField priceField;
     @FXML private TextArea descArea;
     @FXML private Label statusLabel;
+
+    private GameBean gameBean;
 
     @FXML
     public void initialize() {
@@ -49,11 +52,20 @@ public class AddGameController {
 
     @FXML
     private void handleCancel(Event event) {
-        SceneManager.swichScene(event, "/publisher_home.fxml");
+        SceneManager.swichScene(event, "/view/PublisherHome.fxml");
     }
 
     private void showError(String message) {
         statusLabel.setTextFill(Color.web("#ff4c4c"));
         statusLabel.setText(message);
+    }
+
+    public void setGameBean(GameBean bean) {
+        this.gameBean = bean;
+        // Pre-compiliamo i campi grafici con i dati del Bean
+        titleField.setText(bean.getTitle());
+        genreCombo.setValue(bean.getGenre());
+        platformCombo.setValue(bean.getPlatform());
+        priceField.setText(bean.getPrice());
     }
 }

@@ -4,12 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 public class PublisherHomeController {
 
     @FXML
     private ListView<String> notificationList;
+    @FXML
+    private Label publisherName;
 
     @FXML
     public void initialize() {
@@ -21,6 +24,7 @@ public class PublisherHomeController {
                 "✅ Venduta copia di 'Old School RPG' a player_one - 3 ore fa"
         );
         notificationList.setItems(sales);
+        publisherName.setText("Activision");
     }
 
     @FXML
@@ -35,7 +39,7 @@ public class PublisherHomeController {
 
     @FXML
     private void showMyGames(Event event) {
-        System.out.println("Mostra lista giochi pubblicati...");
+        SceneManager.swichScene(event, "/view/PublisherGame.fxml");
     }
 
     @FXML

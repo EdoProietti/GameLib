@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="600.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.PublisherGameController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <children>
+                <Button onAction="#handleBack" style="-fx-background-color: transparent; -fx-border-color: #00d4ff; -fx-border-radius: 10;" text="&lt; Home" textFill="#00d4ff" />
+                <Label text="I Miei Videogiochi" textFill="WHITE">
+                    <font><Font name="System Bold" size="26.0" /></font>
+                </Label>
+            </children>
+        </HBox>
+
+        <TableView fx:id="inventoryTable" VBox.vgrow="ALWAYS" style="-fx-background-color: #2a2a3d; -fx-control-inner-background: #2a2a3d;">
+            <columns>
+                <TableColumn fx:id="colTitle" text="Titolo" />
+                <TableColumn fx:id="colGenre" text="Genere" />
+                <TableColumn fx:id="colPlatform" text="Piattaforma" />
+                <TableColumn fx:id="colPrice" text="Prezzo (€)" />
+                <TableColumn fx:id="colActions" text="Azioni" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </children>
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+</VBox>

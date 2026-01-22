@@ -26,7 +26,7 @@ public class LoginController {
             errorMessage.setText("Accesso effettuato! Benvenuto " + username);
             System.out.println("Login riuscito per: " + username);
             // Qui potresti navigare alla dashboard utente o a un'altra pagina
-            SceneManager.swichScene(event, "/view/PublisherHome.fxml");
+            SceneManager.swichScene(event, "/view/BuyerHomepage.fxml");
 
         } else {
             errorMessage.setTextFill(Color.RED);

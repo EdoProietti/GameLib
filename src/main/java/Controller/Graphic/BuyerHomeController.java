@@ -22,17 +22,16 @@ public class BuyerHomeController {
 
     @FXML
     private void goToLibrary(MouseEvent event) {
-        // SceneManager.swichScene(event, "/view/library.fxml");
+        SceneManager.swichScene(event, "/view/BuyerLibrary.fxml");
     }
 
     @FXML
     private void goToCart(ActionEvent event) {
-        // SceneManager.swichScene(event, "/view/cart.fxml");
+        SceneManager.swichScene(event, "/view/ShoppingCartPage.fxml");
     }
 
     @FXML
     private void handleLogout(ActionEvent event) {
-        // Torna al login o alla home pubblica
-        // SceneManager.swichScene(event, "/login.fxml");
+        SceneManager.swichScene(event, "/view/Login.fxml");
     }
 }

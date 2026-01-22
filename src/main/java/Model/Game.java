@@ -7,30 +7,20 @@ public class Game {
     private String title;
     private BigDecimal price;
     private Publisher publisher;
-    private ArrayList<Platform> platforms;
+    private Platform platform;
     private Genre genre;
 
-    public Game(String title, BigDecimal price, Publisher publisher, Genre genre){
+    public Game(String title, BigDecimal price, Publisher publisher, Genre genre, Platform platform){
         this.title = title;
         this.price = price;
         this.publisher = publisher;
-        this.platforms = new ArrayList<Platform>();
+        this.platform = platform;
         this.genre = genre;
     }
 
-    public void addPlatform(Platform platform){
-        if(this.platforms.isEmpty()){
-            this.platforms.add(platform);
-        }
-        else{
-            for(Platform pl : this.platforms){
-                if(!pl.equals(platform)){
-                    this.platforms.add(platform);
-                    break;
-                }
-            }
-        }
-    }
+    public void setPlatform(Platform platform){this.platform = platform;}
+
+    public Platform getPlatform(){return this.platform;}
 
     public String getTitle(){
         return this.title;

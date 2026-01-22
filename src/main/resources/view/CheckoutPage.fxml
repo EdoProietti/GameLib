@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="650.0" prefWidth="950.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.CheckoutController">
+    <children>
+
+        <VBox spacing="20.0" HBox.hgrow="ALWAYS">
+            <padding><Insets bottom="40.0" left="40.0" right="40.0" top="40.0" /></padding>
+            <children>
+                <Button onAction="#handleBackToCart" style="-fx-background-color: transparent; -fx-border-color: #aaaaaa; -fx-border-radius: 5;" text="&lt; Torna al carrello" textFill="#aaaaaa" />
+
+                <Label text="Metodo di Pagamento" textFill="WHITE">
+                    <font><Font name="System Bold" size="24.0" /></font>
+                </Label>
+
+                <VBox spacing="10.0" style="-fx-background-color: #2a2a3d; -fx-padding: 20; -fx-background-radius: 15;">
+                    <children>
+                        <Label text="Intestatario Carta" textFill="#aaaaaa" />
+                        <TextField fx:id="cardHolderField" promptText="Nome Cognome" style="-fx-background-color: #1e1e2f; -fx-text-fill: white;" />
+
+                        <Label text="Numero Carta" textFill="#aaaaaa" />
+                        <TextField fx:id="cardNumberField" promptText="**** **** **** ****" style="-fx-background-color: #1e1e2f; -fx-text-fill: white;" />
+
+                        <HBox spacing="15.0">
+                            <children>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Scadenza" textFill="#aaaaaa" />
+                                        <TextField fx:id="expiryField" promptText="MM/AA" style="-fx-background-color: #1e1e2f; -fx-text-fill: white;" />
+                                    </children>
+                                </VBox>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="CVV" textFill="#aaaaaa" />
+                                        <PasswordField fx:id="cvvField" promptText="123" style="-fx-background-color: #1e1e2f; -fx-text-fill: white;" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <CheckBox text="Salva questo metodo di pagamento" textFill="#aaaaaa" />
+
+                <Button onAction="#handleConfirmPayment" maxWidth="Infinity" prefHeight="50.0" style="-fx-background-color: #00d4ff; -fx-background-radius: 10;" text="CONFERMA E PAGA" textFill="#1e1e2f">
+                    <font><Font name="System Bold" size="16.0" /></font>
+                    <VBox.margin><Insets top="20.0" /></VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+
+        <VBox prefWidth="350.0" spacing="15.0" style="-fx-background-color: #161625; -fx-padding: 30;">
+            <children>
+                <Label text="Riepilogo Ordine" textFill="WHITE">
+                    <font><Font name="System Bold" size="20.0" /></font>
+                </Label>
+
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+                    <content>
+                        <VBox fx:id="summaryItemsVBox" spacing="10.0" />
+                    </content>
+                </ScrollPane>
+
+                <Separator opacity="0.1" />
+
+                <HBox>
+                    <children>
+                        <Label text="TOTALE DA PAGARE" textFill="WHITE">
+                            <font><Font name="System Bold" size="16.0" /></font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="finalTotalLabel" text="€ 0.00" textFill="#00d4ff">
+                            <font><Font name="System Bold" size="18.0" /></font>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</HBox>
