@@ -1,11 +1,5 @@
 package Bean;
 
-import Model.Genre;
-import Model.Platform;
-import Model.Publisher;
-
-import java.math.BigDecimal;
-
 public class GameBean {
     private String title;
     private String price;

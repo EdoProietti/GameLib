@@ -1,7 +1,8 @@
-package Model;
+package Model.Game;
+
+import Model.User.Publisher;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
 public class Game {
     private String title;

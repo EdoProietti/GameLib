@@ -1,4 +1,6 @@
-package Model;
+package Model.Library;
+
+import Model.Game.Game;
 
 import java.util.ArrayList;
 

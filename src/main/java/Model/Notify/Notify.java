@@ -1,4 +1,6 @@
-package Model;
+package Model.Notify;
+
+import Model.Game.Game;
 
 public class Notify {
     // l'attributo game è di tipo final perché quando un publisher segna come letto la notifica

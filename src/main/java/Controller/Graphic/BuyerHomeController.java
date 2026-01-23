@@ -2,17 +2,22 @@ package Controller.Graphic;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 
 public class BuyerHomeController {
     @FXML
     private FlowPane featuredGamesPane;
+    @FXML
+    private Label userName;
 
     @FXML
     public void initialize() {
         // Qui potresti caricare alcune card di esempio nel featuredPane
         System.out.println("Home Utente inizializzata.");
+        // prendo l'utente loggato dal sessionManager
+        userName.setText("Wyirdu");
     }
 
     @FXML

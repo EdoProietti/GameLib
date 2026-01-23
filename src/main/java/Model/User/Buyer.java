@@ -1,6 +1,9 @@
-package Model;
+package Model.User;
 
-public class Buyer extends User{
+import Model.Library.Library;
+import Model.ShoppingCart;
+
+public class Buyer extends User {
     private ShoppingCart cart;
     private Library library;
 

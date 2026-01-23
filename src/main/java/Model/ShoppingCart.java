@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Game.Game;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 

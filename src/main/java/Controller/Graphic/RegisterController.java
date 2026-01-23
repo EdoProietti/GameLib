@@ -6,11 +6,18 @@ import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
 public class RegisterController {
+
     @FXML private TextField userField;
     @FXML private TextField emailField;
     @FXML private PasswordField passField;
     @FXML private PasswordField confirmPassField;
     @FXML private Label statusLabel;
+    @FXML private CheckBox isPublisher;
+
+    @FXML
+    public void initialize(){
+        isPublisher.setSelected(false);
+    }
 
     @FXML
     private void handleRegister(ActionEvent event) {
@@ -27,6 +34,9 @@ public class RegisterController {
         if (!pass.equals(confirm)) {
             showError("Le password non coincidono!");
             return;
+        }
+        if(isPublisher.isSelected()){
+            // Mandiamo la registrazione dell'utente publisher.
         }
 
         statusLabel.setTextFill(Color.GREEN);

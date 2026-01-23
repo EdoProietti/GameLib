@@ -1,8 +1,11 @@
-package Model;
+package Model.User;
+
+import Model.Game.Game;
+import Model.Notify.Notify;
 
 import java.util.ArrayList;
 
-public class Publisher extends User{
+public class Publisher extends User {
     private ArrayList<Game> catalog;
     private ArrayList<Notify> notification;
 
