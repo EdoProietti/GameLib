@@ -1,4 +1,4 @@
-package DAO.Factory;
+package FactoryDAO;
 
 import Model.Game.GameDAO;
 import Model.Library.LibraryDAO;

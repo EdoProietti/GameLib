@@ -1,5 +1,7 @@
 package Controller.Graphic;
 
+import Controller.Logic.AuthController;
+import Session.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -17,7 +19,7 @@ public class BuyerHomeController {
         // Qui potresti caricare alcune card di esempio nel featuredPane
         System.out.println("Home Utente inizializzata.");
         // prendo l'utente loggato dal sessionManager
-        userName.setText("Wyirdu");
+        userName.setText(SessionManager.getInstance().getLoggedUser().getUsename());
     }
 
     @FXML
@@ -37,6 +39,8 @@ public class BuyerHomeController {
 
     @FXML
     private void handleLogout(ActionEvent event) {
+        AuthController auth = new AuthController();
+        auth.logoutUser();
         SceneManager.swichScene(event, "/view/Login.fxml");
     }
 }

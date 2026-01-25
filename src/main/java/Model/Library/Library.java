@@ -1,11 +1,13 @@
 package Model.Library;
 
 import Model.Game.Game;
+import Model.User.Buyer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Library {
-    private ArrayList<Game> libraryGames;
+    private final ArrayList<Game> libraryGames;
 
     public Library(){
         this.libraryGames = new ArrayList<Game>();
@@ -29,5 +31,9 @@ public class Library {
             }
         }
         return false;
+    }
+
+    public List<Game> getGames(){
+        return this.libraryGames;
     }
 }

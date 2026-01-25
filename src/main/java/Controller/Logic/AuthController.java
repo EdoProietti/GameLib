@@ -2,36 +2,49 @@ package Controller.Logic;
 
 import Bean.UserBean;
 import Exception.UserNotFoundException;
+import Exception.UserFoundException;
+import Exception.PasswordNotEquals;
+import FactoryDAO.FactoryDAO;
+import Model.User.*;
+import Session.SessionManager;
 
 public class AuthController {
 
-    public boolean passwordEquals(UserBean userBean){
-        if(userBean.getPassword().equals(userBean.getConfirmPassword())){
-            return true;
-        }
-        return false;
-    }
-
-    public void addNewUser(UserBean userBean){
+    public void registerNewUser(UserBean userBean) throws UserFoundException{
         if(userExists(userBean)){
-            // crea l'utente e registra nel dao, aggiunge l'utente nel session manager.
+            throw new UserFoundException();
         }
-
+        User user;
+        if(userBean.getType().equals(UserType.PUBLISHER)){
+            user = new Publisher(userBean.getUsername(), userBean.getPassword());
+        } else {
+            user = new Buyer(userBean.getUsername(), userBean.getPassword());
+        }
+        FactoryDAO.getInstance().createUserDAO().addUser(user);
     }
 
-    public void loginUser(UserBean userBean) throws UserNotFoundException {
+    public UserType loginUser(UserBean userBean) throws UserNotFoundException,  PasswordNotEquals {
         if(!userExists(userBean)){
             throw new UserNotFoundException();
         }
+        User user = FactoryDAO.getInstance().createUserDAO().getUserByUsername(userBean.getUsername());
+        if(user.getPassword().equals(userBean.getPassword())){
+            SessionManager.getInstance().setLoggedUser(user);
+        } else {
+            throw new PasswordNotEquals();
+        }
+        if(user.getUserType().equals(UserType.PUBLISHER)){
+            return  UserType.PUBLISHER;
+        }
+        return  UserType.BUYER;
+    }
+
+    public void logoutUser(){
+        SessionManager.getInstance().freeLoggedUser();
     }
 
     private boolean userExists(UserBean userBean){
-
-        // cerchiamo utenti con lo stesso nome
-
-        return false;
+        UserDAO userDAO = FactoryDAO.getInstance().createUserDAO();
+        return userDAO.getUserByUsername(userBean.getUsername()) != null;
     }
-
-
-
 }

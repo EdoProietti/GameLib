@@ -1,6 +1,7 @@
 package Bean;
 
 import Model.User.UserType;
+import Exception.PasswordMissmatch;
 
 public class UserBean {
 
@@ -9,10 +10,16 @@ public class UserBean {
     private String confirmPassword;
     private UserType type;
 
-    public UserBean(String username, String password, UserType type){
+    public UserBean(String username, String password,   String confirmPassword, UserType type) {
         this.username = username;
         this.password = password;
+        this.confirmPassword = confirmPassword;
         this.type = type;
+    }
+
+    public UserBean(String username, String password){
+        this.username = username;
+        this.password = password;
     }
 
     public String getUsername(){
@@ -29,5 +36,11 @@ public class UserBean {
 
     public String getConfirmPassword(){
         return this.confirmPassword;
+    }
+
+    public void passwordAreEqual() throws PasswordMissmatch {
+        if(!this.password.equals(this.confirmPassword)){
+            throw new PasswordMissmatch();
+        }
     }
 }

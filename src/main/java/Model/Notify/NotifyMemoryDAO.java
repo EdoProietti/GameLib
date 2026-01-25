@@ -1,11 +1,14 @@
 package Model.Notify;
 
+import Model.Game.Game;
+import Model.User.Publisher;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class NotifyMemoryDAO extends NotifyDAO{
     private static NotifyMemoryDAO instance;
-    private List<Notify> cache;
+    private final List<Notify> cache;
 
     private NotifyMemoryDAO(){
         cache = new ArrayList<>();
@@ -16,5 +19,29 @@ public class NotifyMemoryDAO extends NotifyDAO{
             instance = new NotifyMemoryDAO();
         }
         return instance;
+    }
+
+    public List<Notify> getPublisherNotifies(Publisher publisher){
+        List<Notify> result = new ArrayList<>();
+        for(Notify notify : cache){
+            if(notify.getGame().getPublisher().equals(publisher)){
+                result.add(notify);
+            }
+        }
+        return result;
+    }
+
+    public void addNotify(Notify notify){
+        cache.add(notify);
+    }
+
+    // questo metodo viene utilizzato per aggiungere copie vendute.
+    public Notify getNotify(Game game){
+        for(Notify notify : cache){
+            if(notify.getGame().equals(game)){
+                return notify;
+            }
+        }
+        return null;
     }
 }

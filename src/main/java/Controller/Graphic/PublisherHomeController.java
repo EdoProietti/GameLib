@@ -1,5 +1,7 @@
 package Controller.Graphic;
 
+import Controller.Logic.AuthController;
+import Session.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -24,7 +26,7 @@ public class PublisherHomeController {
                 "✅ Venduta copia di 'Old School RPG' a player_one - 3 ore fa"
         );
         notificationList.setItems(sales);
-        publisherName.setText("Activision");
+        publisherName.setText(SessionManager.getInstance().getLoggedUser().getUsename());
     }
 
     @FXML
@@ -44,6 +46,8 @@ public class PublisherHomeController {
 
     @FXML
     private void handleLogout(Event event) {
+        AuthController auth = new AuthController();
+        auth.logoutUser();
         SceneManager.swichScene(event, "/view/Login.fxml");
     }
 }

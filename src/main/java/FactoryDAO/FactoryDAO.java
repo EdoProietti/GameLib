@@ -1,4 +1,4 @@
-package DAO.Factory;
+package FactoryDAO;
 
 import Model.Game.GameDAO;
 import Model.Library.LibraryDAO;
@@ -11,14 +11,14 @@ import java.util.Properties;
 
 public abstract class FactoryDAO {
 
-    private static FactoryDAO instance;
+    private static FactoryDAO instance = null;
 
     public FactoryDAO(){}
 
     public static FactoryDAO getInstance(){
 
         if(instance == null){
-            try(FileInputStream file = new FileInputStream("/utils/config.properties")){
+            try(FileInputStream file = new FileInputStream("src/main/resources/utils/config.properties")){
                 Properties prop = new Properties();
                 prop.load(file);
                 String conf = prop.getProperty("PERSISTENCY_TYPE");

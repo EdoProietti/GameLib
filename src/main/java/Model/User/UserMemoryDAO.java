@@ -10,6 +10,8 @@ public class UserMemoryDAO extends UserDAO{
 
     private UserMemoryDAO(){
         this.cache = new ArrayList<>();
+        cache.add(new Buyer("Wyirdu", "12345"));
+        cache.add(new Publisher("Embark Studio", "12345"));
     }
 
     public static UserMemoryDAO getInstance(){
