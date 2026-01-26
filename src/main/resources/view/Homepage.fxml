@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" spacing="30.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.HomeController">
+<VBox alignment="CENTER" prefHeight="600" prefWidth="900" spacing="30.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.HomeController">
     <children>
         <Label text="GameLib" textFill="#00d4ff">
             <font>

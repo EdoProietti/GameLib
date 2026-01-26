@@ -1,5 +1,11 @@
 package Model.User;
 
+import FactoryDAO.FactoryDAO;
+import Model.Game.Game;
+import Model.Game.Genre;
+import Model.Game.Platform;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +16,12 @@ public class UserMemoryDAO extends UserDAO{
 
     private UserMemoryDAO(){
         this.cache = new ArrayList<>();
+        Publisher p = new Publisher("Embark Studio", "12345");
+        Game g = new Game("ARC Raiders", BigDecimal.valueOf(29.99), p, Genre.ACTION, Platform.PC);
+        p.getCatalog().add(g);
+        FactoryDAO.getInstance().createGameDAO().addGame(g);
         cache.add(new Buyer("Wyirdu", "12345"));
-        cache.add(new Publisher("Embark Studio", "12345"));
+        cache.add(p);
     }
 
     public static UserMemoryDAO getInstance(){
@@ -24,7 +34,7 @@ public class UserMemoryDAO extends UserDAO{
     @Override
     public User getUserByUsername(String username) {
         for(User u : cache){
-            if(username.equals(u.getUsename())){
+            if(username.equals(u.getUsername())){
                 return u;
             }
         }

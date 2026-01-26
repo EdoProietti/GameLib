@@ -1,6 +1,8 @@
 package Controller.Graphic;
 
 import Bean.CartBean;
+import Controller.Logic.BuyGameController;
+import Session.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,6 +12,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import Exception.*;
+
+import java.util.List;
 
 public class ShoppingCartController {
 
@@ -22,7 +27,7 @@ public class ShoppingCartController {
     @FXML private Label totalLabel;
     @FXML private Label subtotalLabel;
 
-    private ObservableList<CartBean> cartItems = FXCollections.observableArrayList();
+    private final ObservableList<CartBean> cartItems = FXCollections.observableArrayList();
 
     @FXML
     private void handleBack(Event event){
@@ -35,9 +40,9 @@ public class ShoppingCartController {
         colPlatform.setCellValueFactory(new PropertyValueFactory<>("platform"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        // Esempio inserimento dati
-        cartItems.add(new CartBean("Elden Ring", "PC", "59.99"));
-        cartItems.add(new CartBean("Hades II", "PC", "24.50"));
+        BuyGameController buyGameController = new BuyGameController();
+        List<CartBean> cart = buyGameController.getCartItems();
+        cartItems.addAll(cart);
 
         setupActionColumn();
         cartTable.setItems(cartItems);
@@ -51,8 +56,19 @@ public class ShoppingCartController {
             {
                 deleteBtn.setStyle("-fx-background-color: #ff4c4c; -fx-text-fill: white; -fx-font-weight: bold;");
                 deleteBtn.setOnAction(event -> {
+                    CartBean cartBean =  cartItems.get(getIndex());
+                    BuyGameController buyGameController = new BuyGameController();
+                    try {
+                        buyGameController.removeCartItem(cartBean);
+                    } catch (UserNotLogged e) {
+                        System.out.println("User not logged");
+                        SceneManager.swichScene(event, "/view/Login.fxml");
+                    } catch (UserTypeMissmatch e) {
+                        System.out.println("UserTypeMissmatch");
+                        SessionManager.getInstance().freeLoggedUser();
+                        SceneManager.swichScene(event, "/view/Login.fxml");
+                    }
                     cartItems.remove(getTableView().getItems().get(getIndex()));
-                    // Qui chiamiamo il controllore applicativo per eliminare dal carrello gli oggetti.
                     updateTotals();
                 });
             }

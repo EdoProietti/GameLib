@@ -1,5 +1,6 @@
 package start;
 
+import FactoryDAO.FactoryDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,6 +27,11 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+
+        FactoryDAO.getInstance().createUserDAO();
+        FactoryDAO.getInstance().createGameDAO();
+        FactoryDAO.getInstance().createLibraryDAO();
+        FactoryDAO.getInstance().createNotifyDAO();
         // Avvia l'applicazione JavaFX
         launch(args);
     }

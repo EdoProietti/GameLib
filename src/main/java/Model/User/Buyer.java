@@ -25,4 +25,8 @@ public class Buyer extends User {
     public void freeCart(){
         this.cart = new ShoppingCart();
     }
+
+    public Library getLibrary() {
+        return library;
+    }
 }

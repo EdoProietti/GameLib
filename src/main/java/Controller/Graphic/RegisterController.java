@@ -43,8 +43,6 @@ public class RegisterController {
         else{
             userBean = new UserBean(user, pass, confirm, UserType.BUYER);
         }
-
-
         try{
             userBean.passwordAreEqual();
             AuthController authController = new AuthController();
@@ -78,12 +76,9 @@ public class RegisterController {
         alert.setHeaderText("Benvenuto su GameLib!");
         alert.setContentText("Il tuo account è stato creato con successo. Ora puoi effettuare il login.");
 
-        // Personalizzazione dell'alert
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.setStyle("-fx-background-color: #2a2a3d;");
         dialogPane.lookupAll(".label").forEach(node -> node.setStyle("-fx-text-fill: white;"));
-
-        // Mostriamo il popup.
         alert.showAndWait();
     }
 }

@@ -4,9 +4,10 @@ import Model.Game.Game;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShoppingCart {
-    private ArrayList<Game> cart;
+    private final List<Game> cart;
 
     public ShoppingCart(){
         this.cart = new ArrayList<>();
@@ -38,5 +39,8 @@ public class ShoppingCart {
         return total;
     }
 
+    public List<Game> getItems(){
+        return this.cart;
+    }
 
 }

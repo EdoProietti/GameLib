@@ -1,6 +1,8 @@
 package Controller.Graphic;
 
+import Bean.NotifyBean;
 import Controller.Logic.AuthController;
+import Controller.Logic.BuyGameController;
 import Session.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,24 +11,38 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.List;
+
 public class PublisherHomeController {
 
     @FXML
     private ListView<String> notificationList;
     @FXML
     private Label publisherName;
+    @FXML
+    private Label publisherGrossing;
+    @FXML
+    private Label publisherCopySold;
 
     @FXML
     public void initialize() {
-        // Simuliamo le notifiche delle vendite
-        ObservableList<String> sales = FXCollections.observableArrayList(
-                "✅ Venduta copia di 'Cyber Adventure' a user99 - 2 minuti fa",
-                "✅ Venduta copia di 'Space Warrior' a pro_gamer - 15 minuti fa",
-                "✅ Venduta copia di 'Cyber Adventure' a luca_88 - 1 ora fa",
-                "✅ Venduta copia di 'Old School RPG' a player_one - 3 ore fa"
-        );
+        ObservableList<String> sales = FXCollections.observableArrayList();
+        BuyGameController buyGameController = new BuyGameController();
+        List<NotifyBean> notification = buyGameController.getPublisherNotification();
+        BigDecimal total = BigDecimal.ZERO;
+        int copySold = 0;
+        for(NotifyBean notifyBean : notification){
+            BigDecimal subtotal = notifyBean.getPrice().multiply(BigDecimal.valueOf(notifyBean.getGameCopySold()));
+            total = total.add(subtotal);
+            copySold += notifyBean.getGameCopySold();
+            sales.add("Copie vendute di "+notifyBean.getGameTitle()+" :"+notifyBean.getGameCopySold());
+        }
+        publisherGrossing.setText("Grossing: €"+total.setScale(2, RoundingMode.HALF_UP));
+        publisherCopySold.setText("Copy Sold: "+copySold);
         notificationList.setItems(sales);
-        publisherName.setText(SessionManager.getInstance().getLoggedUser().getUsename());
+        publisherName.setText(SessionManager.getInstance().getLoggedUser().getUsername());
     }
 
     @FXML

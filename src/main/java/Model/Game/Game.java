@@ -19,6 +19,7 @@ public class Game {
         this.genre = genre;
     }
 
+
     public void setPlatform(Platform platform){this.platform = platform;}
 
     public Platform getPlatform(){return this.platform;}

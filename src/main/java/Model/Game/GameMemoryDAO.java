@@ -35,4 +35,23 @@ public class GameMemoryDAO extends  GameDAO{
         }
         return games;
     }
+
+    public Game getGame(String title, String publisher){
+        for(Game game: this.cache){
+            if(game.getTitle().equals(title) && game.getPublisher().getUsername().equals(publisher)){
+                return game;
+            }
+        }
+        return null;
+    }
+
+    public List<Game> getGames(String title){
+        List<Game> games = new ArrayList<>();
+        for(Game game: this.cache){
+            if(game.getTitle().equalsIgnoreCase(title)){
+                games.add(game);
+            }
+        }
+        return games;
+    }
 }

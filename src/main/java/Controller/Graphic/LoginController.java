@@ -24,20 +24,6 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        // Logica di autenticazione (per ora, un esempio molto semplice)
-//        if (username.equals("test") && password.equals("password")) {
-//            errorMessage.setTextFill(Color.GREEN);
-//            errorMessage.setText("Accesso effettuato! Benvenuto " + username);
-//            System.out.println("Login riuscito per: " + username);
-//            // Qui potresti navigare alla dashboard utente o a un'altra pagina
-//            SceneManager.swichScene(event, "/view/BuyerHomepage.fxml");
-//
-//        } else {
-//            errorMessage.setTextFill(Color.RED);
-//            errorMessage.setText("Username o password errati.");
-//            System.out.println("Tentativo di login fallito per: " + username);
-//        }
-
         try{
             AuthController authController = new AuthController();
             UserBean userBean = new UserBean(username, password);

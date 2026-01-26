@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="550.0" prefWidth="450.0" spacing="20.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.RegisterController">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.RegisterController">
     <children>
         <Label text="Crea Account" textFill="#00d4ff">
             <font>
@@ -13,7 +13,7 @@
             </font>
         </Label>
 
-        <VBox alignment="CENTER" spacing="12.0" maxWidth="300.0">
+        <VBox alignment="CENTER" spacing="7.0" maxWidth="300.0">
             <children>
                 <Label text="Username" textFill="WHITE" maxWidth="Infinity" />
                 <TextField fx:id="userField" promptText="Scegli uno username" style="-fx-background-color: #2a2a3d; -fx-text-fill: white; -fx-background-radius: 10;" prefHeight="35.0" />

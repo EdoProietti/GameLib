@@ -66,6 +66,6 @@ public class AddGameController {
         titleField.setText(bean.getTitle());
         genreCombo.setValue(bean.getGenre());
         platformCombo.setValue(bean.getPlatform());
-        priceField.setText(bean.getPrice());
+        priceField.setText(bean.getPrice().toString());
     }
 }

@@ -1,6 +1,6 @@
 package Exception;
 
-public class PasswordNotEquals extends RuntimeException {
+public class PasswordNotEquals extends Exception {
     private static final String message = "Password errata.";
     public PasswordNotEquals() {
         super(message);

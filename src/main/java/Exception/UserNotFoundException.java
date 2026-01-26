@@ -1,6 +1,6 @@
 package Exception;
 
-public class UserNotFoundException extends RuntimeException {
+public class UserNotFoundException extends Exception {
 
     private static final String message = "Utente non trovato";
 

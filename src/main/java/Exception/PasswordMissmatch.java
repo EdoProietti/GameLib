@@ -1,6 +1,6 @@
 package Exception;
 
-public class PasswordMissmatch extends RuntimeException {
+public class PasswordMissmatch extends Exception {
     private static final String message = "Le due password inserite non sono uguali";
     public PasswordMissmatch() {
         super(message);

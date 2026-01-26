@@ -1,6 +1,6 @@
 package Exception;
 
-public class UserFoundException extends RuntimeException {
+public class UserFoundException extends Exception {
     private static final String message = "Username inserito già esistente.";
 
     public UserFoundException() {

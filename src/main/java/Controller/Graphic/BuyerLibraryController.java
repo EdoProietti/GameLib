@@ -1,9 +1,10 @@
 package Controller.Graphic;
 
 import Bean.GameBean;
+import Controller.Logic.BuyGameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
+import Exception.*;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -19,13 +20,15 @@ public class BuyerLibraryController {
     @FXML
     public void initialize() {
         // Chiamo il metodo per ottenere i bean dal controllore logico.
-        // List<LibraryBean> ownedGames = LibraryLogic.getGamesForUser();
-
-        List<GameBean> ownedGames = new ArrayList<>();
-        ownedGames.add(new GameBean("Black ops", "FPS", "PC", "29.99"));
-
-        // Popolo la griglia
-        setLibraryData(ownedGames);
+        try{
+            BuyGameController buyGameController = new BuyGameController();
+            List<GameBean> ownedGames = buyGameController.getLibraryItems();
+            setLibraryData(ownedGames);
+        } catch (UserNotLogged e) {
+            System.out.println("User not logged");
+        } catch (UserTypeMissmatch e) {
+            System.out.println("Type mismatch");
+        }
     }
 
     public void setLibraryData(List<GameBean> ownedGames) {
@@ -53,6 +56,9 @@ public class BuyerLibraryController {
         title.setWrapText(true);
 
         Button playBtn = new Button("GIOCA");
+        playBtn.setOnAction(event -> {
+            System.out.println("Feature non supportata.");
+        });
         playBtn.setStyle("-fx-background-color: #00d4ff; -fx-text-fill: #1e1e2f; -fx-font-weight: bold; -fx-background-radius: 15;");
         playBtn.setPrefWidth(120);
 

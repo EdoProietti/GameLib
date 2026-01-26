@@ -18,10 +18,7 @@ import java.util.Objects;
 public class SceneManager {
     public static void swichScene(Event event, String fxmlPath) {
         try {
-            // Carichiamo il file FXML
             Parent root = FXMLLoader.load(Objects.requireNonNull(SceneManager.class.getResource(fxmlPath)));
-
-            // Recuperiamo lo Stage dall'evento
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             Scene scene = new Scene(root);
@@ -60,8 +57,6 @@ public class SceneManager {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlPath));
             Parent root = loader.load();
             CheckoutController controller = loader.getController();
-
-            // Passiamo i dati richiamando il metodo che abbiamo creato nel CheckoutController
             controller.setCheckoutData(items);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

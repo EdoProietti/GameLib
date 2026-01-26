@@ -5,4 +5,13 @@ public enum Platform {
     PS5,
     XBOX,
     Switch;
+
+    public static Platform toPlatform(String platform){
+        for(Platform p : Platform.values()){
+            if(p.name().equalsIgnoreCase(platform)){
+                return p;
+            }
+        }
+        return null;
+    }
 }

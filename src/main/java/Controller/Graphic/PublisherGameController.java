@@ -26,11 +26,7 @@ public class PublisherGameController {
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         // Carichiamo dati di esempio (che normalmente arriverebbero da una logica di business)
-        ObservableList<GameBean> data = FXCollections.observableArrayList(
-                new GameBean("Cyberpunk 2077", "RPG", "PC", "59.99"),
-                new GameBean("Elden Ring", "Action", "PS5", "69.99"),
-                new GameBean("Hades", "Indie", "Switch", "24.50")
-        );
+        ObservableList<GameBean> data = FXCollections.observableArrayList();
 
         setupActionColumn();
         inventoryTable.setItems(data);

@@ -17,6 +17,10 @@ public class Notify {
         this.sold++;
     }
 
+    public int getSold(){
+        return this.sold;
+    }
+
     public Game getGame(){
         return this.game;
     }
