@@ -14,11 +14,11 @@ public class GameDBDAO {
         return null;
     }
 
-    void addGame(Game game){
+    public void addGame(Game game){
         return;
     }
 
-    List<Game> getPublisherGames(Publisher publisher){
-
+    public List<Game> getPublisherGames(Publisher publisher){
+        return null;
     }
 }
