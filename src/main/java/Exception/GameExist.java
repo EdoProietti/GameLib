@@ -2,7 +2,9 @@ package Exception;
 
 public class GameExist extends Exception {
     public GameExist() {}
-    public GameExist(String message) {}
+    public GameExist(String message) {
+        super(message);
+    }
 
     @Override
     public String getMessage(){

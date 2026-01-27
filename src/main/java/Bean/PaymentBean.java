@@ -6,7 +6,9 @@ public class PaymentBean {
     private String expirationDate;
     private String cvv;
 
-    public PaymentBean() {}
+    public PaymentBean() {
+        // utilizziamo i setter per controllare il formato dei dati
+    }
 
     public void setNameSurname(String nameSurname) {
         this.nameSurname = nameSurname;

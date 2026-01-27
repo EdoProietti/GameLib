@@ -18,6 +18,7 @@ import java.util.List;
 
 public class SearchController {
 
+    public static final String all = "Tutti";
     @FXML private ComboBox<String> filterGenre;
     @FXML private ComboBox<String> filterPlatform;
     @FXML private Slider priceSlider;
@@ -25,6 +26,8 @@ public class SearchController {
     @FXML private TextField searchField;
 
     @FXML private FlowPane resultsPane;
+
+//    private final String all = "Tutti";
 
     @FXML
     private void handleBack(ActionEvent event) {
@@ -52,14 +55,14 @@ public class SearchController {
         String title = searchField.getText();
         resultsPane.getChildren().clear();
 
-        String genre = (filterGenre.getValue() != null) ? filterGenre.getValue() : "Tutti";
-        String platform = (filterPlatform.getValue() != null) ? filterPlatform.getValue() : "Tutti";
+        String genre = (filterGenre.getValue() != null) ? filterGenre.getValue() : all;
+        String platform = (filterPlatform.getValue() != null) ? filterPlatform.getValue() : all;
         BigDecimal maxPrice = BigDecimal.valueOf(priceSlider.getValue());
         SearchBean searchBean = new SearchBean();
-        if(!genre.equals("Tutti")) {
+        if(!genre.equals(all)) {
             searchBean.setGenre(genre);
         }
-        if(!platform.equals("Tutti")) {
+        if(!platform.equals(all)) {
             searchBean.setPlatform(platform);
         }
         searchBean.setTitle(title);
