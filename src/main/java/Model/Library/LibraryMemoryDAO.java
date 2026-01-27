@@ -1,16 +1,18 @@
 package Model.Library;
 
+import Model.Game.Game;
 import Model.User.Buyer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LibraryMemoryDAO extends LibraryDAO{
     private static LibraryMemoryDAO instance;
-    private final List<Library> cache;
+    private final HashMap<String, Library> cache;
 
     private LibraryMemoryDAO(){
-        cache = new ArrayList<>();
+        cache = new HashMap<>();
     }
 
     public static LibraryMemoryDAO getInstance(){
@@ -20,9 +22,23 @@ public class LibraryMemoryDAO extends LibraryDAO{
         return instance;
     }
 
+    @Override
     public Library getLibrary(String username){
-        Library library = new Library();
-        cache.add(library);
-        return library;
+        if(cache.get(username) == null){
+            Library library = new Library();
+            cache.put(username, library);
+        }
+        return cache.get(username);
+    }
+
+    @Override
+    public void addBuyerGame(Buyer buyer, Game game) {
+        Library library = getLibrary(buyer.getUsername());
+        for(Game g: library.getGames()){
+            if(g.equals(game)){
+                return;
+            }
+        }
+        library.addGame(game);
     }
 }

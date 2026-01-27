@@ -14,10 +14,6 @@ public class Buyer extends User {
         this.library = FactoryDAO.getInstance().createLibraryDAO().getLibrary(username);
     }
 
-    public void linkLibrary(Library library){
-        this.library = library;
-    }
-
     public ShoppingCart getCart() {
         return cart;
     }
@@ -27,6 +23,7 @@ public class Buyer extends User {
     }
 
     public Library getLibrary() {
+        this.library = FactoryDAO.getInstance().createLibraryDAO().getLibrary(this.getUsername());
         return library;
     }
 }

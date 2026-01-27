@@ -21,7 +21,7 @@ public class NotifyMemoryDAO extends NotifyDAO{
         return instance;
     }
 
-    public List<Notify> getPublisherNotifies(Publisher publisher){
+    public List<Notify> getPublisherNotification(Publisher publisher){
         List<Notify> result = new ArrayList<>();
         for(Notify notify : cache){
             if(notify.getGame().getPublisher().equals(publisher)){
@@ -32,6 +32,12 @@ public class NotifyMemoryDAO extends NotifyDAO{
     }
 
     public void addNotify(Notify notify){
+        for(Notify n: cache){
+            if(notify.getGame().equals(n.getGame())){
+                n.addCopySold();
+                return;
+            }
+        }
         cache.add(notify);
     }
 

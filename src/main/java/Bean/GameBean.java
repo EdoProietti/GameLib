@@ -19,6 +19,12 @@ public class GameBean {
         this.price = price;
     }
 
+    public GameBean(String title, String genre, String platform, BigDecimal price) {
+        this.title = title;
+        this.genre = genre;
+        this.platform = platform;
+        this.price = price;
+    }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }

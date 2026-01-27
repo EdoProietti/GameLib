@@ -38,21 +38,11 @@ public class BuyGameController {
         ShoppingCart cart = buyer.getCart();
         Library library = buyer.getLibrary();
         for(Game game: cart.getItems()){
-            if(!library.isInLibrary(game)){
-                if(game.getPublisher().notificationCreated(game)){
-                    List<Notify> notification = game.getPublisher().getNotification();
-                    for(Notify notify: notification){
-                        if(notify.getGame().equals(game)){
-                            notify.addCopySold();
-                            break;
-                        }
-                    }
-                }else{
-                    game.getPublisher().getNotification().add(new Notify(game));
-                }
-                library.addGame(game);
-            }
+            FactoryDAO.getInstance().createNotifyDAO().addNotify(new Notify(game));
+            library.addGame(game);
+            FactoryDAO.getInstance().createLibraryDAO().addBuyerGame(buyer, game);
         }
+        buyer.freeCart();
     }
 
     public List<GameBean> searchGame(SearchBean searchBean){
@@ -130,6 +120,7 @@ public class BuyGameController {
             g.setPublisher(game.getPublisher().getUsername());
             g.setGenre(game.getGenre().toString());
             gameBeans.add(g);
+            System.out.println("Aggiunto alla libreria: "+game.getTitle());
         }
         return gameBeans;
     }

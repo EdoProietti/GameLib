@@ -1,11 +1,15 @@
 package Controller.Graphic;
 
 import Bean.GameBean;
+import Controller.Logic.ManageGameController;
+import Session.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import Exception.*;
+import java.math.BigDecimal;
 
 public class AddGameController {
 
@@ -39,14 +43,24 @@ public class AddGameController {
         try {
             double price = Double.parseDouble(priceText.replace(",", "."));
             if (price < 0) throw new NumberFormatException();
-
+            GameBean gameBean = new GameBean(
+                    title,
+                    genre,
+                    platform,
+                    BigDecimal.valueOf(price)
+            );
+            ManageGameController manage = new ManageGameController();
+            manage.addNewGame(gameBean);
             System.out.println("Salvataggio gioco: " + title + " (" + platform + ") a €" + price);
-
             statusLabel.setTextFill(Color.web("#00ff00"));
             statusLabel.setText("Gioco aggiunto correttamente al catalogo!");
-
         } catch (NumberFormatException e) {
             showError("Errore: Inserisci un prezzo valido (es: 29.99)");
+        } catch (GameExist e){
+            showError("Errore: Gioco già presente nel catalogo.");
+        } catch(UserTypeMissmatch e){
+            SessionManager.getInstance().freeLoggedUser();
+            SceneManager.swichScene(event, "/view/Login.fxml");
         }
     }
 
@@ -62,10 +76,10 @@ public class AddGameController {
 
     public void setGameBean(GameBean bean) {
         this.gameBean = bean;
-        // Pre-compiliamo i campi grafici con i dati del Bean
-        titleField.setText(bean.getTitle());
-        genreCombo.setValue(bean.getGenre());
-        platformCombo.setValue(bean.getPlatform());
-        priceField.setText(bean.getPrice().toString());
+        // Pre-compiliamo i campi grafici con i dati del Bean nel caso di modifica
+        titleField.setText(this.gameBean.getTitle());
+        genreCombo.setValue(this.gameBean.getGenre());
+        platformCombo.setValue(this.gameBean.getPlatform());
+        priceField.setText(this.gameBean.getPrice().toString());
     }
 }

@@ -2,6 +2,7 @@ package Controller.Graphic;
 
 import Bean.GameBean;
 import Controller.Logic.BuyGameController;
+import Controller.Logic.ManageGameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import Exception.*;

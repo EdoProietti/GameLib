@@ -1,6 +1,8 @@
 package Controller.Graphic;
 
 import Bean.GameBean;
+import Controller.Logic.ManageGameController;
+import Exception.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,17 +21,20 @@ public class PublisherGameController {
 
     @FXML
     public void initialize() {
-        // Colleghiamo le colonne alle variabili del GameBean
-        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-        colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        colPlatform.setCellValueFactory(new PropertyValueFactory<>("platform"));
-        colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        // Carichiamo dati di esempio (che normalmente arriverebbero da una logica di business)
-        ObservableList<GameBean> data = FXCollections.observableArrayList();
-
-        setupActionColumn();
-        inventoryTable.setItems(data);
+        // Diamo i nomi alle colonne della tabella.
+        try{
+            colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+            colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+            colPlatform.setCellValueFactory(new PropertyValueFactory<>("platform"));
+            colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+            ObservableList<GameBean> data = FXCollections.observableArrayList();
+            ManageGameController manage = new ManageGameController();
+            data.addAll(manage.getGameList());
+            setupActionColumn();
+            inventoryTable.setItems(data);
+        }catch (UserTypeMissmatch e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void setupActionColumn() {
@@ -43,6 +48,7 @@ public class PublisherGameController {
                 });
             }
 
+            // Serve a non inserire bottoni dove non ci sono gameBean
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
