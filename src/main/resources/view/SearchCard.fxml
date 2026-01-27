@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="150.0" spacing="10.0" style="-fx-background-color: #2a2a3d; -fx-background-radius: 15; -fx-cursor: hand;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.GameCardController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="150.0" spacing="10.0" style="-fx-background-color: #2a2a3d; -fx-background-radius: 15; -fx-cursor: hand;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.graphic.GameCardController">
     <children>
         <Label fx:id="gameTitle" text="Titolo Gioco" textAlignment="CENTER" textFill="WHITE" wrapText="true">
             <font>

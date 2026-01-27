@@ -1,6 +1,6 @@
 package start;
 
-import FactoryDAO.FactoryDAO;
+import factoryDAO.FactoryDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

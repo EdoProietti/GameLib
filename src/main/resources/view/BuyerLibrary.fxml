@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Graphic.BuyerLibraryController">
+<VBox prefHeight="600.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: #1e1e2f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.graphic.BuyerLibraryController">
     <children>
         <HBox alignment="CENTER_LEFT" spacing="20.0">
             <children>
