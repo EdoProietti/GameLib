@@ -1,15 +1,16 @@
 package Exception;
 
 public class PasswordMissmatch extends Exception {
-    private static final String message = "Le due password inserite non sono uguali";
+    private static final String MESSAGE = "Le due password inserite non sono uguali";
     public PasswordMissmatch() {
-        super(message);
+        super(MESSAGE);
     }
     public PasswordMissmatch(String message) {
         super(message);
     }
 
+    @Override
     public String getMessage() {
-        return message;
+        return MESSAGE;
     }
 }

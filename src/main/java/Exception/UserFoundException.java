@@ -1,13 +1,14 @@
 package Exception;
 
 public class UserFoundException extends Exception {
-    private static final String message = "Username inserito già esistente.";
+    private static final String MESSAGE = "Username inserito già esistente.";
 
     public UserFoundException() {
-        super(message);
+        super(MESSAGE);
     }
 
+    @Override
     public String  getMessage() {
-        return message;
+        return MESSAGE;
     }
 }

@@ -21,13 +21,11 @@ public class Main extends Application {
             primaryStage.show();
 
         } catch (Exception e) {
-            System.err.println("Errore fatale: Impossibile caricare la Home Page.");
-            e.printStackTrace();
+            System.out.println("Errore fatale: Impossibile caricare la Home Page.");
         }
     }
 
     public static void main(String[] args) {
-
         FactoryDAO.getInstance().createUserDAO();
         FactoryDAO.getInstance().createGameDAO();
         FactoryDAO.getInstance().createLibraryDAO();

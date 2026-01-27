@@ -20,8 +20,6 @@ public class AddGameController {
     @FXML private TextArea descArea;
     @FXML private Label statusLabel;
 
-    private GameBean gameBean;
-
     @FXML
     public void initialize() {
         genreCombo.setItems(FXCollections.observableArrayList("Action", "RPG", "FPS", "Sport"));
@@ -75,11 +73,10 @@ public class AddGameController {
     }
 
     public void setGameBean(GameBean bean) {
-        this.gameBean = bean;
         // Pre-compiliamo i campi grafici con i dati del Bean nel caso di modifica
-        titleField.setText(this.gameBean.getTitle());
-        genreCombo.setValue(this.gameBean.getGenre());
-        platformCombo.setValue(this.gameBean.getPlatform());
-        priceField.setText(this.gameBean.getPrice().toString());
+        titleField.setText(bean.getTitle());
+        genreCombo.setValue(bean.getGenre());
+        platformCombo.setValue(bean.getPlatform());
+        priceField.setText(bean.getPrice().toString());
     }
 }

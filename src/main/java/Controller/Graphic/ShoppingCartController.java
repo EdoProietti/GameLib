@@ -50,34 +50,44 @@ public class ShoppingCartController {
     }
 
     private void setupActionColumn() {
-        // Per ogni cella creo un button per l'eliminazione degli oggetti dal controller
-        colAction.setCellFactory(param -> new TableCell<>() {
-            private final Button deleteBtn = new Button("X");
-            {
-                deleteBtn.setStyle("-fx-background-color: #ff4c4c; -fx-text-fill: white; -fx-font-weight: bold;");
-                deleteBtn.setOnAction(event -> {
-                    CartBean cartBean =  cartItems.get(getIndex());
-                    BuyGameController buyGameController = new BuyGameController();
-                    try {
-                        buyGameController.removeCartItem(cartBean);
-                    } catch (UserNotLogged e) {
-                        System.out.println("User not logged");
-                        SceneManager.swichScene(event, "/view/Login.fxml");
-                    } catch (UserTypeMissmatch e) {
-                        System.out.println("UserTypeMissmatch");
-                        SessionManager.getInstance().freeLoggedUser();
-                        SceneManager.swichScene(event, "/view/Login.fxml");
-                    }
-                    cartItems.remove(getTableView().getItems().get(getIndex()));
-                    updateTotals();
-                });
+        colAction.setCellFactory(param -> new DeleteButtonCell());
+    }
+
+    // classe interna per gestire la cella con il tasto di eliminazione
+    private class DeleteButtonCell extends TableCell<CartBean, Void> {
+        private final Button deleteBtn = new Button("X");
+
+        public DeleteButtonCell() {
+            deleteBtn.setStyle("-fx-background-color: #ff4c4c; -fx-text-fill: white; -fx-font-weight: bold;");
+            deleteBtn.setOnAction(event -> {
+                CartBean cartBean = getTableView().getItems().get(getIndex());
+                BuyGameController buyGameController = new BuyGameController();
+                try {
+                    buyGameController.removeCartItem(cartBean);
+                } catch (UserNotLogged e) {
+                    System.out.println("User not logged");
+                    SceneManager.swichScene(event, "/view/Login.fxml");
+                } catch (UserTypeMissmatch e) {
+                    System.out.println("UserTypeMissmatch");
+                    SessionManager.getInstance().freeLoggedUser();
+                    SceneManager.swichScene(event, "/view/Login.fxml");
+                }
+                // rimuovo dall'interfaccia il gioco eliminato
+                cartItems.remove(cartBean);
+                updateTotals();
+            });
+        }
+
+        @Override
+        protected void updateItem(Void item, boolean empty) {
+            super.updateItem(item, empty);
+            // Gestione della visibilità del bottone
+            if (empty) {
+                setGraphic(null);
+            } else {
+                setGraphic(deleteBtn);
             }
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : deleteBtn);
-            }
-        });
+        }
     }
 
     private void updateTotals() {

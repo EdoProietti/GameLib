@@ -2,14 +2,15 @@ package Exception;
 
 public class UserNotFoundException extends Exception {
 
-    private static final String message = "Utente non trovato";
+    private static final String MESSAGE = "Utente non trovato";
 
     public UserNotFoundException() {
-        super(message);
+        super(MESSAGE);
     }
 
+    @Override
     public String getMessage() {
-        return message;
+        return MESSAGE;
     }
 
 }

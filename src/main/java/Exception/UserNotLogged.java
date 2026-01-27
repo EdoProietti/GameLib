@@ -1,7 +1,7 @@
 package Exception;
 
 public class UserNotLogged extends Exception {
-    private static final String message = "Questa funzione ha bisogno del login.";
+    private static final String MESSAGE = "Questa funzione ha bisogno del login.";
 
     public UserNotLogged(String message) {
         super(message);
@@ -9,7 +9,8 @@ public class UserNotLogged extends Exception {
 
     public UserNotLogged(){}
 
+    @Override
     public String getMessage(){
-        return message;
+        return MESSAGE;
     }
 }

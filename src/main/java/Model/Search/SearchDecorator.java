@@ -3,14 +3,14 @@ package Model.Search;
 import Model.Game.Game;
 
 public abstract class SearchDecorator implements GameFilter{
-    protected GameFilter searchDecorator;
+    protected GameFilter decorator;
 
-    public SearchDecorator(GameFilter searchDecorator) {
-        this.searchDecorator = searchDecorator;
+    protected SearchDecorator(GameFilter searchDecorator) {
+        this.decorator = searchDecorator;
     }
 
     @Override
     public boolean check(Game game){
-        return searchDecorator.check(game);
+        return decorator.check(game);
     }
 }

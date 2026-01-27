@@ -13,7 +13,7 @@ public abstract class FactoryDAO {
 
     private static FactoryDAO instance = null;
 
-    public FactoryDAO(){}
+    protected FactoryDAO(){}
 
     public static FactoryDAO getInstance(){
 

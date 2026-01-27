@@ -1,12 +1,13 @@
 package Exception;
 
 public class PasswordNotEquals extends Exception {
-    private static final String message = "Password errata.";
+    private static final String MESSAGE = "Password errata.";
     public PasswordNotEquals() {
-        super(message);
+        super(MESSAGE);
     }
 
+    @Override
     public String getMessage() {
-        return message;
+        return MESSAGE;
     }
 }

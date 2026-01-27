@@ -16,6 +16,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class SceneManager {
+
+    private SceneManager(){
+        // non serve instanziarlo perché ha tutti i metodo statici
+    }
+
     public static void swichScene(Event event, String fxmlPath) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(SceneManager.class.getResource(fxmlPath)));
@@ -26,10 +31,9 @@ public class SceneManager {
             stage.show();
 
         } catch (IOException e) {
-            System.err.println("Errore: Impossibile caricare il file FXML in " + fxmlPath);
-            e.printStackTrace();
+            System.out.println("Errore: Impossibile caricare il file FXML in " + fxmlPath);
         } catch (NullPointerException e) {
-            System.err.println("Errore: File FXML non trovato al percorso: " + fxmlPath);
+            System.out.println("Errore: File FXML non trovato al percorso: " + fxmlPath);
         }
     }
 
@@ -48,7 +52,7 @@ public class SceneManager {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Errore nell'apertura del file xml");
         }
     }
 
@@ -64,8 +68,7 @@ public class SceneManager {
             stage.show();
 
         } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Errore nel caricamento della pagina di checkout.");
+            System.out.println("Errore nel caricamento della pagina di checkout.");
         }
     }
 
