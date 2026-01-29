@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class GameCardController {
 
@@ -30,7 +31,7 @@ public class GameCardController {
     public void setData(GameBean game) {
         gameTitle.setText(game.getTitle());
         genreGame.setText(game.getGenre());
-        gamePrice.setText("€"+game.getPrice().toString());
+        gamePrice.setText("€"+game.getPrice().setScale(2, RoundingMode.HALF_UP));
         gamePublisher.setText(game.getPublisher());
     }
 

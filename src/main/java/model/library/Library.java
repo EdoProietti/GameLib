@@ -16,10 +16,6 @@ public class Library {
         this.libraryGames.add(game);
     }
 
-    public ArrayList<Game> getLibraryGames() {
-        return libraryGames;
-    }
-
     public boolean isInLibrary(Game game){
         if(this.libraryGames.isEmpty()){
             return false;

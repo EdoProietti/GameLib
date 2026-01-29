@@ -1,29 +1,33 @@
 package factoryDAO;
 
 import model.game.GameDAO;
+import model.game.GameDBDAO;
 import model.library.LibraryDAO;
+import model.library.LibraryDBDAO;
 import model.notify.NotifyDAO;
+import model.notify.NotifyDBDAO;
 import model.user.UserDAO;
+import model.user.UserDBDAO;
 
 public class DatabaseDAO extends FactoryDAO {
 
     @Override
     public UserDAO createUserDAO() {
-        return null;
+        return new UserDBDAO();
     }
 
     @Override
     public NotifyDAO createNotifyDAO() {
-        return null;
+        return new NotifyDBDAO();
     }
 
     @Override
     public LibraryDAO createLibraryDAO() {
-        return null;
+        return new LibraryDBDAO();
     }
 
     @Override
     public GameDAO createGameDAO() {
-        return null;
+        return new GameDBDAO();
     }
 }

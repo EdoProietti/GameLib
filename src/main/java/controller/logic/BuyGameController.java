@@ -19,6 +19,7 @@ import model.user.UserType;
 import session.SessionManager;
 import exception.*;
 
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +85,7 @@ public class BuyGameController {
             cartBeans.add(new CartBean(
                     game.getTitle()+"---"+game.getPublisher().getUsername(),
                     game.getPlatform().toString(),
-                    game.getPrice().toString()
+                    game.getPrice().setScale(2, RoundingMode.HALF_UP).toString()
                     ));
         }
         return cartBeans;

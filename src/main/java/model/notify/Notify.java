@@ -17,6 +17,10 @@ public class Notify {
         this.sold++;
     }
 
+    public void setCopySold(int sold){
+        this.sold = sold;
+    }
+
     public int getSold(){
         return this.sold;
     }
