@@ -14,6 +14,12 @@ public class Buyer extends User {
         this.library = FactoryDAO.getInstance().createLibraryDAO().getLibrary(username);
     }
 
+    public Buyer(String username, String password, Library library) {
+        super(username, password, UserType.BUYER);
+        this.library = library;
+        this.cart = new ShoppingCart();
+    }
+
     public ShoppingCart getCart() {
         return cart;
     }

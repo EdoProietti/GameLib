@@ -5,9 +5,11 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import filePathClasses.FileStorageConfig;
+import model.library.Library;
 
 public class UserFSysDAO extends UserDAO{
 
@@ -46,7 +48,7 @@ public class UserFSysDAO extends UserDAO{
     private User checkPublisherFile(String username){
         try(FileReader reader = new FileReader(filePublisher)){
             // typeToken serve a specificare alla libreria gson che deve prendere una lista di publisher
-            Type type = new TypeToken<Publisher>(){}.getType();
+            Type type = new TypeToken<ArrayList<Publisher>>(){}.getType();
             List<Publisher> publishers = gson.fromJson(reader, type);
             for(Publisher p: publishers){
                 if(p.getUsername().equals(username)){
@@ -61,7 +63,7 @@ public class UserFSysDAO extends UserDAO{
 
     private User checkBuyerFile(String username){
         try(FileReader reader = new FileReader(fileBuyer)){
-            Type type = new TypeToken<Buyer>(){}.getType();
+            Type type = new TypeToken<ArrayList<Buyer>>(){}.getType();
             List<Buyer> buyers = gson.fromJson(reader, type);
             for(Buyer b: buyers){
                 if(b.getUsername().equals(username)){

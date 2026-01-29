@@ -11,6 +11,8 @@ import model.game.Game;
 import session.SessionManager;
 import exception.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +62,7 @@ public class ManageGameController {
         Publisher publisher = getPublisherSession();
         List<GameBean> gameBeans = new ArrayList<>();
         for(Game g: publisher.getCatalog()){
-            gameBeans.add(new GameBean(g.getTitle(), g.getGenre().toString(), g.getPlatform().toString(), g.getPrice()));
+            gameBeans.add(new GameBean(g.getTitle(), g.getGenre().toString(), g.getPlatform().toString(), g.getPrice().setScale(2,  RoundingMode.HALF_UP)));
         }
         return gameBeans;
     }
