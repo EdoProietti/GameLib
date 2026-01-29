@@ -2,6 +2,7 @@ package model.notify;
 
 import connection.ConnectionFactory;
 import factoryDAO.FactoryDAO;
+import filePathClasses.PropertyPath;
 import model.user.Publisher;
 
 import java.io.FileInputStream;
@@ -36,7 +37,7 @@ public class NotifyDBDAO extends NotifyDAO{
 
     @Override
     public List<Notify> getPublisherNotification(Publisher publisher) {
-        try(FileInputStream input = new FileInputStream("src/main/resources/utils/query.properties")){
+        try(FileInputStream input = new FileInputStream(PropertyPath.getQueryPath())){
             List<Notify> notifyList;
             if(notifications.get(publisher.getUsername()) == null){
                 notifications.put(publisher.getUsername(), new ArrayList<>());
@@ -69,7 +70,7 @@ public class NotifyDBDAO extends NotifyDAO{
 
     @Override
     public void addNotify(Notify notify){
-        try(FileInputStream input = new FileInputStream("src/main/resources/utils/query.properties")){
+        try(FileInputStream input = new FileInputStream(PropertyPath.getQueryPath())){
             Properties prop = new Properties();
             prop.load(input);
             // AGGIUNGERE QUERY PER SAPERE QUANTE COPIE SONO STATE VENDUTE.
@@ -100,7 +101,7 @@ public class NotifyDBDAO extends NotifyDAO{
     }
 
     private void saveNotifyOnDB(Notify n){
-        try(FileInputStream input = new FileInputStream("src/main/resources/utils/query.properties")){
+        try(FileInputStream input = new FileInputStream(PropertyPath.getQueryPath())){
             Properties prop = new Properties();
             prop.load(input);
             Connection conn = ConnectionFactory.getInstance().getConnection();

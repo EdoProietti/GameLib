@@ -2,6 +2,7 @@ package model.library;
 
 import connection.ConnectionFactory;
 import factoryDAO.FactoryDAO;
+import filePathClasses.PropertyPath;
 import model.user.Buyer;
 import model.game.Game;
 
@@ -26,7 +27,7 @@ public class LibraryDBDAO extends LibraryDAO {
     @Override
     public Library getLibrary(String username){
         if(libraries.get(username) == null){
-            try(FileInputStream input = new FileInputStream("src/main/resources/utils/query.properties")){
+            try(FileInputStream input = new FileInputStream(PropertyPath.getQueryPath())){
                 Properties prop = new Properties();
                 prop.load(input);
                 Connection conn = ConnectionFactory.getInstance().getConnection();
@@ -52,7 +53,7 @@ public class LibraryDBDAO extends LibraryDAO {
 
     @Override
     public void addBuyerGame(Buyer buyer, Game game){
-        try(FileInputStream input = new FileInputStream("src/main/resources/utils/query.properties")){
+        try(FileInputStream input = new FileInputStream(PropertyPath.getQueryPath())){
             Properties prop = new Properties();
             prop.load(input);
             Connection conn = ConnectionFactory.getInstance().getConnection();

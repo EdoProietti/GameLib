@@ -1,6 +1,7 @@
 package model.user;
 
 import connection.ConnectionFactory;
+import filePathClasses.PropertyPath;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class UserDBDAO extends UserDAO{
 
     @Override
     public User getUserByUsername(String username) {
-        try(FileInputStream input = new FileInputStream("src/main/resources/utils/query.properties")){
+        try(FileInputStream input = new FileInputStream(PropertyPath.getQueryPath())){
             User user = list.get(username);
             if(user != null){
                 return user;
@@ -53,7 +54,7 @@ public class UserDBDAO extends UserDAO{
 
     @Override
     public void addUser(User user){
-        try(FileInputStream input = new FileInputStream("src/main/resources/utils/query.properties")){
+        try(FileInputStream input = new FileInputStream(PropertyPath.getQueryPath())){
             Properties prop = new Properties();
             prop.load(input);
             Connection conn = ConnectionFactory.getInstance().getConnection();

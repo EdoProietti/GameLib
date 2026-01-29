@@ -4,12 +4,13 @@ import model.game.GameDAO;
 import model.library.LibraryDAO;
 import model.notify.NotifyDAO;
 import model.user.UserDAO;
+import model.user.UserFSysDAO;
 
 public class FileSystemDAO extends FactoryDAO {
 
     @Override
     public UserDAO createUserDAO() {
-        return null;
+        return new UserFSysDAO();
     }
 
     @Override

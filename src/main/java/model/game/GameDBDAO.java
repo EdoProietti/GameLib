@@ -2,6 +2,7 @@ package model.game;
 
 import connection.ConnectionFactory;
 import factoryDAO.FactoryDAO;
+import filePathClasses.PropertyPath;
 import model.user.Publisher;
 
 import java.io.FileInputStream;
@@ -26,7 +27,7 @@ public class GameDBDAO extends GameDAO{
 
     @Override
     public Game getGame(String title, String publisher){
-        try(FileInputStream input = new FileInputStream("src/main/resources/utils/query.properties")){
+        try(FileInputStream input = new FileInputStream(PropertyPath.getQueryPath())){
             for(Game g : gameList){
                 if(g.getTitle().equals(title) &&
                         g.getPublisher().equals(FactoryDAO.getInstance().createUserDAO().getUserByUsername(publisher))){
@@ -65,7 +66,7 @@ public class GameDBDAO extends GameDAO{
     @Override
     public List<Game> getGames(String title){
         List<Game> games = new ArrayList<>();
-        try(FileInputStream input = new FileInputStream("src/main/resources/utils/query.properties")){
+        try(FileInputStream input = new FileInputStream(PropertyPath.getQueryPath())){
             Properties prop = new Properties();
             prop.load(input);
             Connection conn = ConnectionFactory.getInstance().getConnection();
@@ -100,7 +101,7 @@ public class GameDBDAO extends GameDAO{
 
     @Override
     public void addGame(Game game){
-        try(FileInputStream input = new FileInputStream("src/main/resources/utils/query.properties")){
+        try(FileInputStream input = new FileInputStream(PropertyPath.getQueryPath())){
             Properties prop = new Properties();
             prop.load(input);
             Connection conn = ConnectionFactory.getInstance().getConnection();
@@ -125,7 +126,7 @@ public class GameDBDAO extends GameDAO{
     @Override
     public List<Game> getPublisherGames(Publisher publisher){
         List<Game> games = new ArrayList<>();
-        try(FileInputStream input = new FileInputStream("src/main/resources/utils/query.properties")){
+        try(FileInputStream input = new FileInputStream(PropertyPath.getQueryPath())){
             Properties prop = new Properties();
             prop.load(input);
             Connection conn = ConnectionFactory.getInstance().getConnection();
