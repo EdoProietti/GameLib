@@ -1,6 +1,7 @@
 package controller.graphic;
 
 import bean.GameBean;
+import controller.logic.AuthController;
 import controller.logic.ManageGameController;
 import exception.*;
 import javafx.collections.FXCollections;
@@ -33,6 +34,8 @@ public class PublisherGameController {
             inventoryTable.setItems(data);
         }catch (UserTypeMissmatch e) {
             System.out.println(e.getMessage());
+            AuthController a = new AuthController();
+            a.logoutUser();
         }
     }
 

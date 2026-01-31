@@ -1,9 +1,6 @@
 package controller.logic;
 
-import bean.CartBean;
-import bean.GameBean;
-import bean.NotifyBean;
-import bean.SearchBean;
+import bean.*;
 import factoryDAO.FactoryDAO;
 import model.game.Game;
 import model.game.Genre;
@@ -34,7 +31,11 @@ public class BuyGameController {
         }
     }
 
-    public void addCartGamesToLibrary() throws UserNotLogged, UserTypeMissmatch{
+    public void checkout(PaymentBean paymentBean) throws UserNotLogged, UserTypeMissmatch {
+        addCartGamesToLibrary();
+    }
+
+    private void addCartGamesToLibrary() throws UserNotLogged, UserTypeMissmatch{
         Buyer buyer = getBuyer();
         ShoppingCart cart = buyer.getCart();
         Library library = buyer.getLibrary();
@@ -120,8 +121,8 @@ public class BuyGameController {
             g.setTitle(game.getTitle());
             g.setPublisher(game.getPublisher().getUsername());
             g.setGenre(game.getGenre().toString());
+            g.setPlatform(game.getPlatform().toString());
             gameBeans.add(g);
-            System.out.println("Aggiunto alla libreria: "+game.getTitle());
         }
         return gameBeans;
     }

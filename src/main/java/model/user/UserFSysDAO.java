@@ -13,7 +13,6 @@ import model.library.Library;
 
 public class UserFSysDAO extends UserDAO{
 
-    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final File fileBuyer = FileStorageConfig.getBuyerFilePath().toFile();
     private final File filePublisher = FileStorageConfig.getPublisherFilePath().toFile();
 
@@ -28,17 +27,20 @@ public class UserFSysDAO extends UserDAO{
 
     @Override
     public void addUser(User user) {
+        Gson gson = new Gson();
         if(user.getUserType() == UserType.BUYER){
+            List<Buyer> buyers = getAllBuyers();
             try(FileWriter writer = new FileWriter(fileBuyer)){
-                Buyer buyer = (Buyer) user;
-                gson.toJson(buyer, writer);
+                buyers.add((Buyer) user);
+                gson.toJson(buyers, writer);
             }catch(IOException e){
                 System.out.println(e.getMessage());
             }
         }else{
+            List<Publisher> publishers = getAllPublishers();
             try(FileWriter writer = new FileWriter(filePublisher)){
-                Publisher publisher = (Publisher) user;
-                gson.toJson(publisher, writer);
+                publishers.add((Publisher) user);
+                gson.toJson(publishers, writer);
             }catch(IOException e){
                 System.out.println(e.getMessage());
             }
@@ -49,6 +51,7 @@ public class UserFSysDAO extends UserDAO{
         try(FileReader reader = new FileReader(filePublisher)){
             // typeToken serve a specificare alla libreria gson che deve prendere una lista di publisher
             Type type = new TypeToken<ArrayList<Publisher>>(){}.getType();
+            Gson gson = new Gson();
             List<Publisher> publishers = gson.fromJson(reader, type);
             for(Publisher p: publishers){
                 if(p.getUsername().equals(username)){
@@ -64,6 +67,7 @@ public class UserFSysDAO extends UserDAO{
     private User checkBuyerFile(String username){
         try(FileReader reader = new FileReader(fileBuyer)){
             Type type = new TypeToken<ArrayList<Buyer>>(){}.getType();
+            Gson gson = new Gson();
             List<Buyer> buyers = gson.fromJson(reader, type);
             for(Buyer b: buyers){
                 if(b.getUsername().equals(username)){
@@ -74,5 +78,27 @@ public class UserFSysDAO extends UserDAO{
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    private List<Buyer> getAllBuyers(){
+        try(FileReader reader = new FileReader(fileBuyer)){
+            Type type = new TypeToken<ArrayList<Buyer>>(){}.getType();
+            Gson gson = new Gson();
+            return gson.fromJson(reader, type);
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+        return new ArrayList<>();
+    }
+
+    private List<Publisher> getAllPublishers(){
+        try(FileReader reader = new FileReader(filePublisher)){
+            Type type = new TypeToken<ArrayList<Publisher>>(){}.getType();
+            Gson gson = new Gson();
+            return gson.fromJson(reader, type);
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+        return new ArrayList<>();
     }
 }

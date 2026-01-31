@@ -1,7 +1,7 @@
 package exception;
 
 public class PasswordNotEquals extends Exception {
-    private static final String MESSAGE = "Password errata.";
+    private static final String MESSAGE = "Credenziali errate";
     public PasswordNotEquals() {
         super(MESSAGE);
     }

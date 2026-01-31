@@ -42,7 +42,6 @@ public class LoginController {
 
     @FXML
     private void handleRegister(ActionEvent event) {
-        System.out.println("Navigazione alla pagina di registrazione...");
         SceneManager.swichScene(event, "/view/Register.fxml");
     }
 

@@ -16,10 +16,8 @@ public class BuyerHomeController {
 
     @FXML
     public void initialize() {
-        // Qui potresti caricare alcune card di esempio nel featuredPane
         System.out.println("Home Utente inizializzata.");
-        // prendo l'utente loggato dal sessionManager
-        userName.setText(SessionManager.getInstance().getLoggedUser().getUsername());
+        userName.setText(AuthController.getLoggedUserBean().getUsername());
     }
 
     @FXML

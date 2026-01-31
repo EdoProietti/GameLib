@@ -50,6 +50,7 @@ public class PublisherHomeController {
         SceneManager.swichScene(event, "/view/AddNewGame.fxml");
     }
 
+    // metodo che permette il refresh delle notifiche.
     @FXML
     private void showDashboard(Event event) {
         System.out.println("Ricarica dashboard...");

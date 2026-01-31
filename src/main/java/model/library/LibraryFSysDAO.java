@@ -8,6 +8,7 @@ import model.user.Buyer;
 import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryFSysDAO extends LibraryDAO {
@@ -19,7 +20,7 @@ public class LibraryFSysDAO extends LibraryDAO {
     @Override
     public Library getLibrary(String username) {
         try(FileReader reader = new FileReader(FileStorageConfig.getBuyerFilePath().toFile())){
-            Type type = new TypeToken<Buyer>(){}.getType();
+            Type type = new TypeToken<ArrayList<Buyer>>(){}.getType();
             List<Buyer> buyers = new Gson().fromJson(reader, type);
             if(buyers == null){
                 return new Library();

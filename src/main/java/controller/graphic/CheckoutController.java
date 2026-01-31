@@ -2,6 +2,7 @@ package controller.graphic;
 
 import bean.CartBean;
 import bean.PaymentBean;
+import controller.logic.AuthController;
 import controller.logic.BuyGameController;
 import session.SessionManager;
 import javafx.event.ActionEvent;
@@ -55,7 +56,7 @@ public class CheckoutController {
                 paymentBean.setExpirationDate(expiryField.getText());
                 paymentBean.setNameSurname(cardHolderField.getText());
                 BuyGameController buyGameController = new BuyGameController();
-                buyGameController.addCartGamesToLibrary();
+                buyGameController.checkout(paymentBean);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Pagamento eseguito con successo");
                 alert.showAndWait();
                 SceneManager.swichScene(event, "/view/BuyerHomepage.fxml");
@@ -65,7 +66,8 @@ public class CheckoutController {
             } catch (UserNotLogged | UserTypeMissmatch e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Azione non possibile!");
                 alert.showAndWait();
-                SessionManager.getInstance().freeLoggedUser();
+                AuthController auth =  new AuthController();
+                auth.logoutUser();
                 SceneManager.swichScene(event, "/view/Login.fxml");
             }
         }

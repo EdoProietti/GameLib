@@ -1,6 +1,7 @@
 package controller.graphic;
 
 import bean.GameBean;
+import controller.logic.AuthController;
 import controller.logic.BuyGameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,21 +19,21 @@ public class BuyerLibraryController {
 
     @FXML
     public void initialize() {
-        // Chiamo il metodo per ottenere i bean dal controllore logico.
         try{
             BuyGameController buyGameController = new BuyGameController();
             List<GameBean> ownedGames = buyGameController.getLibraryItems();
             setLibraryData(ownedGames);
         } catch (UserNotLogged e) {
-            System.out.println("user not logged");
+            System.out.println(e.getMessage());
         } catch (UserTypeMissmatch e) {
-            System.out.println("Type mismatch");
+            System.out.println(e.getMessage());
+            AuthController a = new AuthController();
+            a.logoutUser();
         }
     }
 
-    public void setLibraryData(List<GameBean> ownedGames) {
+    private void setLibraryData(List<GameBean> ownedGames) {
         gamesGrid.getChildren().clear();
-
         for (GameBean game : ownedGames) {
             gamesGrid.getChildren().add(createGameCard(game));
         }
@@ -44,7 +45,7 @@ public class BuyerLibraryController {
         card.setAlignment(Pos.CENTER);
         card.setStyle("-fx-background-color: #2a2a3d; -fx-background-radius: 15; -fx-border-color: #3d3d5c; -fx-border-radius: 15;");
 
-        // "Copertina" simbolica (un rettangolo colorato o un'icona)
+        // icona gioco non implementata con immagine
         Region cover = new Region();
         cover.setPrefSize(160, 100);
         cover.setStyle("-fx-background-color: #3d3d5c; -fx-background-radius: 10;");

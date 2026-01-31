@@ -49,13 +49,6 @@
                         <Label fx:id="subtotalLabel" text="€ 0.00" textFill="WHITE" />
                     </children>
                 </HBox>
-                <HBox alignment="CENTER_LEFT">
-                    <children>
-                        <Label text="IVA (incl.)" textFill="#aaaaaa" />
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label text="€ 0.00" textFill="WHITE" />
-                    </children>
-                </HBox>
                 <Separator opacity="0.2" />
                 <HBox alignment="CENTER_LEFT">
                     <children>

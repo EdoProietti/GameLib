@@ -47,4 +47,13 @@ public class AuthController {
         UserDAO userDAO = FactoryDAO.getInstance().createUserDAO();
         return userDAO.getUserByUsername(userBean.getUsername()) != null;
     }
+
+    public static User getLoggedUser(){
+        return SessionManager.getInstance().getLoggedUser();
+    }
+
+    public static UserBean getLoggedUserBean(){
+        User user = getLoggedUser();
+        return new UserBean(user.getUsername(),  user.getPassword());
+    }
 }

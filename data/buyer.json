@@ -1,13 +1,1 @@
-[
-  {
-    "cart": {
-      "cart": []
-    },
-    "library": {
-      "libraryGames": []
-    },
-    "username": "Prova",
-    "password": "Prova",
-    "type": "BUYER"
-  }
-]
+[{"cart":{"cart":[]},"library":{"libraryGames":[]},"username":"Prova","password":"Prova","type":"BUYER"},{"cart":{"cart":[]},"library":{"libraryGames":[]},"username":"Wyirdu","password":"12345","type":"BUYER"}]

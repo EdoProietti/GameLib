@@ -40,4 +40,9 @@ public class GameBean {
 
     public  String getPublisher() { return publisher; }
     public void setPublisher(String publisher) { this.publisher = publisher; }
+
+    @Override
+    public String toString() {
+        return this.title+"|"+this.publisher+"|"+this.platform+"|"+this.genre;
+    }
 }

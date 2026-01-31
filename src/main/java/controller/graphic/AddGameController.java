@@ -1,6 +1,7 @@
 package controller.graphic;
 
 import bean.GameBean;
+import controller.logic.AuthController;
 import controller.logic.ManageGameController;
 import session.SessionManager;
 import javafx.collections.FXCollections;
@@ -55,9 +56,10 @@ public class AddGameController {
         } catch (NumberFormatException e) {
             showError("Errore: Inserisci un prezzo valido (es: 29.99)");
         } catch (GameExist e){
-            showError("Errore: Gioco già presente nel catalogo.");
+            showError(e.getMessage());
         } catch(UserTypeMissmatch e){
-            SessionManager.getInstance().freeLoggedUser();
+            AuthController a = new AuthController();
+            a.logoutUser();
             SceneManager.swichScene(event, "/view/Login.fxml");
         }
     }
@@ -73,7 +75,6 @@ public class AddGameController {
     }
 
     public void setGameBean(GameBean bean) {
-        // Pre-compiliamo i campi grafici con i dati del bean nel caso di modifica
         titleField.setText(bean.getTitle());
         genreCombo.setValue(bean.getGenre());
         platformCombo.setValue(bean.getPlatform());

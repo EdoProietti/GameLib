@@ -1,6 +1,7 @@
 package controller.graphic;
 
 import bean.GameBean;
+import controller.logic.AuthController;
 import controller.logic.BuyGameController;
 import exception.*;
 import session.SessionManager;
@@ -49,7 +50,8 @@ public class GameCardController {
             SceneManager.swichScene(event, "/view/Login.fxml");
         } catch (UserTypeMissmatch e) {
             showPopup("Azione consentita solamente ai compratori.", "Ritorno alla schermata di login");
-            SessionManager.getInstance().freeLoggedUser();
+            AuthController a = new AuthController();
+            a.logoutUser();
             SceneManager.swichScene(event, "/view/Login.fxml");
         }
         btnAddToCart.setDisable(true);
@@ -57,7 +59,7 @@ public class GameCardController {
     }
 
     private void showPopup(String typeError, String description) {
-        // creo alert di tipo informazione
+        // creo alert di tipo error
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Errore");
         alert.setHeaderText(typeError);

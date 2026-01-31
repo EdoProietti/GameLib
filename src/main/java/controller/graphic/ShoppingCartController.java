@@ -1,12 +1,11 @@
 package controller.graphic;
 
 import bean.CartBean;
+import controller.logic.AuthController;
 import controller.logic.BuyGameController;
-import session.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,11 +27,6 @@ public class ShoppingCartController {
     @FXML private Label subtotalLabel;
 
     private final ObservableList<CartBean> cartItems = FXCollections.observableArrayList();
-
-    @FXML
-    private void handleBack(Event event){
-        SceneManager.swichScene(event, "/view/BuyerHomepage.fxml");
-    }
 
     @FXML
     public void initialize() {
@@ -64,24 +58,23 @@ public class ShoppingCartController {
                 BuyGameController buyGameController = new BuyGameController();
                 try {
                     buyGameController.removeCartItem(cartBean);
+                    cartItems.remove(cartBean);
+                    updateTotals();
                 } catch (UserNotLogged e) {
                     System.out.println("user not logged");
                     SceneManager.swichScene(event, "/view/Login.fxml");
                 } catch (UserTypeMissmatch e) {
                     System.out.println("UserTypeMissmatch");
-                    SessionManager.getInstance().freeLoggedUser();
+                    AuthController auth = new AuthController();
+                    auth.logoutUser();
                     SceneManager.swichScene(event, "/view/Login.fxml");
                 }
-                // rimuovo dall'interfaccia il gioco eliminato
-                cartItems.remove(cartBean);
-                updateTotals();
             });
         }
 
         @Override
         protected void updateItem(Void item, boolean empty) {
             super.updateItem(item, empty);
-            // Gestione della visibilità del bottone
             if (empty) {
                 setGraphic(null);
             } else {

@@ -2,6 +2,7 @@ package controller.graphic;
 
 import bean.GameBean;
 import bean.SearchBean;
+import controller.logic.AuthController;
 import controller.logic.BuyGameController;
 import session.SessionManager;
 import javafx.collections.FXCollections;
@@ -29,7 +30,7 @@ public class SearchController {
 
     @FXML
     private void handleBack(ActionEvent event) {
-        if(SessionManager.getInstance().getLoggedUser() != null){
+        if(AuthController.getLoggedUser() != null){
             SceneManager.swichScene(event, "/view/BuyerHomepage.fxml");
         }
         else{
