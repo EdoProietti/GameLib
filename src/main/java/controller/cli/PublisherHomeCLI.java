@@ -48,8 +48,8 @@ public class PublisherHomeCLI {
 
     private void printDashboard() {
         System.out.println("   AREA PUBLISHER: " + publisherName);
-        System.out.printf("Totale Guadagni: € %.2f \n", grossing);
-        System.out.printf("Copie Totali Vendute: %d unità \n", copiesSold);
+        System.out.printf("Totale Guadagni: € %.2f %n", grossing);
+        System.out.printf("Copie Totali Vendute: %d unità %n", copiesSold);
 
         System.out.println("NOTIFICHE VENDITE:");
         if (notifications.isEmpty()) {

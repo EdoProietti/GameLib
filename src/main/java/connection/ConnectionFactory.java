@@ -28,10 +28,10 @@ public class ConnectionFactory {
             try (InputStream input = new FileInputStream("src/main/resources/utils/connection.properties")) {
                 Properties properties = new Properties();
                 properties.load(input);
-                String connection_url = properties.getProperty("CONNECTION_URL");
+                String connectionUrl = properties.getProperty("CONNECTION_URL");
                 String user = properties.getProperty("USER");
                 String pass = properties.getProperty("PASS");
-                connection = DriverManager.getConnection(connection_url, user, pass);
+                connection = DriverManager.getConnection(connectionUrl, user, pass);
             } catch (IOException | SQLException e) {
                 System.out.println("Error during connection to database: " + e.getMessage());
             }

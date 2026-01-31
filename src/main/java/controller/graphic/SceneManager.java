@@ -12,12 +12,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SceneManager {
 
     private SceneManager(){
         // non serve instanziarlo perché ha tutti i metodo statici
     }
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SceneManager.class.getName());
 
     public static void swichScene(Event event, String fxmlPath) {
         try {
@@ -28,10 +32,8 @@ public class SceneManager {
             stage.setScene(scene);
             stage.show();
 
-        } catch (IOException e) {
-            System.out.println("Errore: Impossibile caricare il file FXML in " + fxmlPath);
-        } catch (NullPointerException e) {
-            System.out.println("Errore: File FXML non trovato al percorso: " + fxmlPath);
+        } catch (IOException | NullPointerException e) {
+            LOGGER.error(e.getMessage());
         }
     }
 
@@ -50,7 +52,7 @@ public class SceneManager {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            System.out.println("Errore nell'apertura del file xml");
+            LOGGER.error(e.getMessage());
         }
     }
 
@@ -64,9 +66,8 @@ public class SceneManager {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-
         } catch (IOException e) {
-            System.out.println("Errore nel caricamento della pagina di checkout.");
+            LOGGER.error(e.getMessage());
         }
     }
 

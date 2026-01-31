@@ -50,7 +50,6 @@ public class AddGameController {
             );
             ManageGameController manage = new ManageGameController();
             manage.addNewGame(gameBean);
-            System.out.println("Salvataggio gioco: " + title + " (" + platform + ") a €" + price);
             statusLabel.setTextFill(Color.web("#00ff00"));
             statusLabel.setText("Gioco aggiunto correttamente al catalogo!");
         } catch (NumberFormatException e) {

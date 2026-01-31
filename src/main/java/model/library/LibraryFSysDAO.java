@@ -39,6 +39,32 @@ public class LibraryFSysDAO extends LibraryDAO {
 
     @Override
     public void addBuyerGame(Buyer buyer, Game game) {
+        List<Buyer> buyers = getBuyers();
+        List<Buyer> newBuyers = new ArrayList<>();
+        if(buyers != null){
+            for(Buyer buyer1 : buyers){
+                if(!buyer1.getUsername().equals(buyer.getUsername())){
+                    newBuyers.add(buyer1);
+                }else{
+                    newBuyers.add(buyer);
+                }
+            }
+            try(FileWriter writer = new FileWriter(FileStorageConfig.getBuyerFilePath().toFile())){
+                Gson gson = new Gson();
+                gson.toJson(newBuyers, writer);
+            } catch(IOException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
+    private List<Buyer> getBuyers(){
+        try(FileReader reader = new FileReader(FileStorageConfig.getBuyerFilePath().toFile())){
+            Type type = new TypeToken<ArrayList<Buyer>>(){}.getType();
+            return new Gson().fromJson(reader, type);
+        } catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

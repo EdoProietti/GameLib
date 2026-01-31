@@ -15,11 +15,11 @@ public class SearchCLI {
     private final Scanner scanner = new Scanner(System.in);
     private static final String ALL = "Tutti";
 
-    private String genre = "Tutti";
-    private String platform = "Tutti";
+    private String genre = ALL;
+    private String platform = ALL;
     private double maxPrice = 150.0;
     private String searchQuery = "";
-    private final Map<Integer, GameBean> LASTSEARCHGAME = new HashMap<>();
+    private final Map<Integer, GameBean> lastSearchGame = new HashMap<>();
 
     public void displaySearchCLI() {
         boolean back = false;
@@ -71,12 +71,12 @@ public class SearchCLI {
         searchBean.setPrice(BigDecimal.valueOf(maxPrice));
         searchBean.setTitle(searchQuery);
         List<GameBean> gameBeans = new BuyGameController().searchGame(searchBean);
-        LASTSEARCHGAME.clear();
+        lastSearchGame.clear();
         for(int i = 0; i < gameBeans.size(); i++){
-            int visual_id = i+1;
+            int visualId = i+1;
             GameBean gameBean = gameBeans.get(i);
-            LASTSEARCHGAME.put(visual_id, gameBean);
-            System.out.println(visual_id+") "+gameBean.getTitle()+"|"+gameBean.getPublisher()+"|"+gameBean.getPlatform()+"|"+gameBean.getPrice());
+            lastSearchGame.put(visualId, gameBean);
+            System.out.println(visualId+") "+gameBean.getTitle()+"|"+gameBean.getPublisher()+"|"+gameBean.getPlatform()+"|"+gameBean.getPrice());
         }
         System.out.println("Fine risultati.");
         selectGame();
@@ -86,8 +86,8 @@ public class SearchCLI {
         System.out.println("Inserisci il numero del gioco che vuoi aggiungere al carrello:");
         try{
             int choice = Integer.parseInt(scanner.nextLine());
-            if(LASTSEARCHGAME.containsKey(choice)){
-                GameBean gameBean = LASTSEARCHGAME.get(choice);
+            if(lastSearchGame.containsKey(choice)){
+                GameBean gameBean = lastSearchGame.get(choice);
                 BuyGameController buyGameController = new BuyGameController();
                 buyGameController.addGameToCart(gameBean);
                 System.out.println("Gioco aggiunto al carrello.");

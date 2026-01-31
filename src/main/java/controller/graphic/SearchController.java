@@ -4,6 +4,8 @@ import bean.GameBean;
 import bean.SearchBean;
 import controller.logic.AuthController;
 import controller.logic.BuyGameController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import session.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -19,7 +21,8 @@ import java.util.List;
 
 public class SearchController {
 
-    public static final String ALL = "Tutti";
+    private static final String ALL = "Tutti";
+    private static final Logger LOGGER = LoggerFactory.getLogger(SearchController.class);
     @FXML private ComboBox<String> filterGenre;
     @FXML private ComboBox<String> filterPlatform;
     @FXML private Slider priceSlider;
@@ -76,7 +79,7 @@ public class SearchController {
                 controller.setData(g);
                 resultsPane.getChildren().add(card);
             } catch(Exception e){
-                System.out.println("Errore nel caricamento del file xml");
+                LOGGER.error(e.getMessage());
             }
         }
     }

@@ -5,7 +5,7 @@ public class PropertyPath {
     private static final String QUERY= "src/main/resources/utils/query.properties";
     private static final String CONFIG="src/main/resources/utils/config.properties";
 
-    public PropertyPath(){
+    private PropertyPath(){
         // Non serve inizializzare alcun attributo.
     }
 

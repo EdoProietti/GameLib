@@ -61,10 +61,8 @@ public class ShoppingCartController {
                     cartItems.remove(cartBean);
                     updateTotals();
                 } catch (UserNotLogged e) {
-                    System.out.println("user not logged");
                     SceneManager.swichScene(event, "/view/Login.fxml");
                 } catch (UserTypeMissmatch e) {
-                    System.out.println("UserTypeMissmatch");
                     AuthController auth = new AuthController();
                     auth.logoutUser();
                     SceneManager.swichScene(event, "/view/Login.fxml");
@@ -95,10 +93,7 @@ public class ShoppingCartController {
 
     @FXML
     private void handleCheckout(ActionEvent event) {
-        if (cartItems.isEmpty()) {
-            System.out.println("Il carrello è vuoto!");
-        } else {
-            System.out.println("Navigazione verso la pagina di pagamento...");
+        if (!cartItems.isEmpty()) {
             SceneManager.switchToCheckout(event, "/view/CheckoutPage.fxml", cartItems);
         }
     }

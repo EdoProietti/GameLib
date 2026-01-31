@@ -31,7 +31,7 @@ public class BuyGameController {
         }
     }
 
-    public void checkout(PaymentBean paymentBean) throws UserNotLogged, UserTypeMissmatch {
+    public void checkout() throws UserNotLogged, UserTypeMissmatch {
         addCartGamesToLibrary();
     }
 

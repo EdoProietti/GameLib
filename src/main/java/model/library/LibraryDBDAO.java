@@ -5,6 +5,8 @@ import factoryDAO.FactoryDAO;
 import filePathClasses.PropertyPath;
 import model.user.Buyer;
 import model.game.Game;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.io.FileInputStream;
@@ -19,6 +21,7 @@ import java.util.Properties;
 public class LibraryDBDAO extends LibraryDAO {
 
     private static final HashMap<String, Library> libraries = new HashMap<>();
+    private static final Logger LOGGER = LoggerFactory.getLogger(LibraryDBDAO.class);
 
     public LibraryDBDAO() {
         super();
@@ -42,10 +45,8 @@ public class LibraryDBDAO extends LibraryDAO {
                             )
                     );
                 }
-            }catch(IOException e){
-                System.out.println("Errore nell'apertura del file: "+e.getMessage());
-            }catch(SQLException e){
-                System.out.println(e.getMessage());
+            }catch(IOException | SQLException e){
+                LOGGER.error(e.getMessage());
             }
         }
         return libraries.get(username);
@@ -62,10 +63,8 @@ public class LibraryDBDAO extends LibraryDAO {
             preparedStatement.setString(2, buyer.getUsername());
             preparedStatement.setString(3, game.getPublisher().getUsername());
             preparedStatement.execute();
-        } catch(IOException e){
-            System.out.println("Errore nell'apertura del file: "+e.getMessage());
-        } catch(SQLException e){
-            System.out.println("Errore sql: "+e.getMessage());
+        } catch(IOException | SQLException e){
+            LOGGER.error(e.getMessage());
         }
     }
 }

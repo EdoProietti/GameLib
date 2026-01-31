@@ -2,6 +2,8 @@ package model.user;
 
 import connection.ConnectionFactory;
 import filePathClasses.PropertyPath;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,6 +17,7 @@ import java.util.Properties;
 public class UserDBDAO extends UserDAO{
 
     private static final HashMap<String, User> list = new HashMap<>();
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserDBDAO.class);
 
     public UserDBDAO(){
         super();
@@ -43,11 +46,8 @@ public class UserDBDAO extends UserDAO{
                 list.put(b.getUsername(), b);
                 return b;
             }
-        } catch(IOException e){
-            System.out.println("Errore apertura file.");
-        } catch(SQLException e){
-            return null;
-            //System.out.println("Errore sql: "+e.getMessage());
+        } catch(IOException | SQLException   e){
+            LOGGER.error(e.getMessage());
         }
         return null;
     }
@@ -63,10 +63,8 @@ public class UserDBDAO extends UserDAO{
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getUserType().toString());
             preparedStatement.execute();
-        }catch(IOException e){
-            System.out.println("Errore apertura file."+e.getMessage());
-        }catch(SQLException e){
-            System.out.println("Errore sql add user: "+e.getMessage());
+        }catch(IOException | SQLException e){
+            LOGGER.error(e.getMessage());
         }
     }
 

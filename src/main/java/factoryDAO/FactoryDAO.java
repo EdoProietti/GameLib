@@ -4,14 +4,18 @@ import model.game.GameDAO;
 import model.library.LibraryDAO;
 import model.notify.NotifyDAO;
 import model.user.UserDAO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+
 public abstract class FactoryDAO {
 
     private static FactoryDAO instance = null;
+    private static final Logger LOGGER = LoggerFactory.getLogger(FactoryDAO.class.getName());
 
     protected FactoryDAO(){}
 
@@ -34,7 +38,7 @@ public abstract class FactoryDAO {
                         break;
                 }
             }catch(IOException e){
-                System.out.println("File non trovato: " + e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         }
         return instance;

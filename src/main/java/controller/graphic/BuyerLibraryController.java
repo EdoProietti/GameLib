@@ -23,10 +23,7 @@ public class BuyerLibraryController {
             BuyGameController buyGameController = new BuyGameController();
             List<GameBean> ownedGames = buyGameController.getLibraryItems();
             setLibraryData(ownedGames);
-        } catch (UserNotLogged e) {
-            System.out.println(e.getMessage());
-        } catch (UserTypeMissmatch e) {
-            System.out.println(e.getMessage());
+        } catch (UserTypeMissmatch | UserNotLogged e) {
             AuthController a = new AuthController();
             a.logoutUser();
         }

@@ -28,6 +28,7 @@ public class HomeCLI {
                 case "0":
                     System.out.println("Chiusura applicazione.");
                     exit = true;
+                    break;
                 default:
                     System.out.println("Inserisci un'opzione valida");
             }

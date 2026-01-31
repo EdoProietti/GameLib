@@ -4,6 +4,8 @@ import connection.ConnectionFactory;
 import factoryDAO.FactoryDAO;
 import filePathClasses.PropertyPath;
 import model.user.Publisher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,6 +26,7 @@ public class GameDBDAO extends GameDAO{
     }
 
     private static final List<Game> gameList = new ArrayList<>();
+    private final static Logger LOGGER = LoggerFactory.getLogger(GameDBDAO.class);
 
     @Override
     public Game getGame(String title, String publisher){
@@ -53,12 +56,8 @@ public class GameDBDAO extends GameDAO{
                 gameList.add(game);
             }
             return game;
-        }catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (IOException e) {
-            System.out.println("Errore nell'apertura del file: " + e.getMessage());
-        } catch (SQLException e) {
-            System.out.println("Errore sql: " + e.getMessage());
+        } catch (SQLException | IOException e) {
+            LOGGER.error(e.getMessage());
         }
         return null;
     }
@@ -89,12 +88,8 @@ public class GameDBDAO extends GameDAO{
                 }
             }
             return games;
-        }catch(FileNotFoundException e){
-            System.out.println("File not found");
-        } catch(IOException e){
-            System.out.println("Errore nell'apertura del file: " + e.getMessage());
-        }catch(SQLException e){
-            System.out.println("Errore sql: " + e.getMessage());
+        } catch(SQLException | IOException e){
+            LOGGER.error(e.getMessage());
         }
         return games;
     }
@@ -114,12 +109,8 @@ public class GameDBDAO extends GameDAO{
             preparedStatement.setInt(6, 0);
             preparedStatement.execute();
             gameList.add(game);
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (IOException e) {
-            System.out.println("Errore nell'apertura del file: " + e.getMessage());
-        }catch(SQLException e){
-            System.out.println("Errore sql: " + e.getMessage());
+        } catch (IOException | SQLException e) {
+            LOGGER.error(e.getMessage());
         }
     }
 
@@ -149,10 +140,8 @@ public class GameDBDAO extends GameDAO{
                 }
             }
             return games;
-        }catch (IOException e) {
-            System.out.println("Errore nell'apertura del file: "+e.getMessage());
-        } catch (SQLException e) {
-            System.out.println("Errore sql: "+e.getMessage());
+        }catch (IOException | SQLException e) {
+            LOGGER.error(e.getMessage());
         }
         return games;
     }

@@ -56,7 +56,7 @@ public class CheckoutController {
                 paymentBean.setExpirationDate(expiryField.getText());
                 paymentBean.setNameSurname(cardHolderField.getText());
                 BuyGameController buyGameController = new BuyGameController();
-                buyGameController.checkout(paymentBean);
+                buyGameController.checkout();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Pagamento eseguito con successo");
                 alert.showAndWait();
                 SceneManager.swichScene(event, "/view/BuyerHomepage.fxml");

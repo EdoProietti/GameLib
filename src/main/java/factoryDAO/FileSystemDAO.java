@@ -4,14 +4,18 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import filePathClasses.FileStorageConfig;
 import model.game.GameDAO;
+import model.game.GameFSysDAO;
 import model.library.Library;
 import model.library.LibraryDAO;
 import model.library.LibraryFSysDAO;
 import model.notify.NotifyDAO;
+import model.notify.NotifyFSysDAO;
 import model.user.Buyer;
 import model.user.Publisher;
 import model.user.UserDAO;
 import model.user.UserFSysDAO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileSystemDAO extends FactoryDAO {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileSystemDAO.class);
 
     public FileSystemDAO(){
         super();
@@ -34,7 +40,7 @@ public class FileSystemDAO extends FactoryDAO {
 
     @Override
     public GameDAO createGameDAO() {
-        return null;
+        return new GameFSysDAO();
     }
 
     @Override
@@ -44,7 +50,7 @@ public class FileSystemDAO extends FactoryDAO {
 
     @Override
     public NotifyDAO createNotifyDAO() {
-        return null;
+        return new NotifyFSysDAO();
     }
 
     private void initializeValues(){
@@ -67,7 +73,7 @@ public class FileSystemDAO extends FactoryDAO {
                 }
             }
         }catch(IOException e){
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
     }
 }

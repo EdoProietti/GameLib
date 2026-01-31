@@ -56,7 +56,7 @@ public class CheckoutCLI {
             pay.setCvv(cvv);
             BuyGameController controller = new BuyGameController();
             try {
-                controller.checkout(pay);
+                controller.checkout();
                 System.out.println("Pagamento autorizzato!");
             } catch (UserNotLogged e) {
                 System.out.println(e.getMessage());
