@@ -1,4 +1,4 @@
-package filePathClasses;
+package file_path_classes;
 
 public class PropertyPath {
 

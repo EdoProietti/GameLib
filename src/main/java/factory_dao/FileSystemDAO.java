@@ -1,8 +1,8 @@
-package factoryDAO;
+package factory_dao;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import filePathClasses.FileStorageConfig;
+import file_path_classes.FileStorageConfig;
 import model.game.GameDAO;
 import model.game.GameFSysDAO;
 import model.library.Library;

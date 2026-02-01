@@ -1,6 +1,5 @@
-package filePathClasses;
+package file_path_classes;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 

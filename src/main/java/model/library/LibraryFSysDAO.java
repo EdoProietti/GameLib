@@ -1,7 +1,7 @@
 package model.library;
 
 import com.google.gson.Gson;
-import filePathClasses.FileStorageConfig;
+import file_path_classes.FileStorageConfig;
 import model.game.Game;
 import model.user.Buyer;
 

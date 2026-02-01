@@ -1,8 +1,8 @@
 package start;
 
 import controller.cli.HomeCLI;
-import factoryDAO.FactoryDAO;
-import filePathClasses.PropertyPath;
+import factory_dao.FactoryDAO;
+import file_path_classes.PropertyPath;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

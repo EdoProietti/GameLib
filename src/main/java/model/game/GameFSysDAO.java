@@ -2,6 +2,7 @@ package model.game;
 
 import model.user.Publisher;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameFSysDAO extends GameDAO{
@@ -15,7 +16,7 @@ public class GameFSysDAO extends GameDAO{
     @Override
     public List<Game> getGames(String title) {
         // not implemented
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -26,6 +27,6 @@ public class GameFSysDAO extends GameDAO{
     @Override
     public List<Game> getPublisherGames(Publisher publisher) {
         // not implemented
-        return List.of();
+        return new ArrayList<>();
     }
 }

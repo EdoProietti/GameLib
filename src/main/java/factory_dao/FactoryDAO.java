@@ -1,4 +1,4 @@
-package factoryDAO;
+package factory_dao;
 
 import model.game.GameDAO;
 import model.library.LibraryDAO;

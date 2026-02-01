@@ -4,7 +4,7 @@ import bean.UserBean;
 import exception.UserNotFoundException;
 import exception.UserFoundException;
 import exception.PasswordNotEquals;
-import factoryDAO.FactoryDAO;
+import factory_dao.FactoryDAO;
 import model.user.*;
 import session.SessionManager;
 

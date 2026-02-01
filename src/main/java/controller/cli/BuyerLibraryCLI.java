@@ -27,8 +27,7 @@ public class BuyerLibraryCLI {
                     System.out.println(i+1 + ". " + myGames.get(i).toString());
                 }
             }
-            System.out.println("0. Torna allo Store");
-            System.out.print("\nScelta: ");
+            System.out.print("0. Torna allo Store\nScelta: ");
             String choice = scanner.nextLine();
             if (choice.equals("0")) {
                 back = true;

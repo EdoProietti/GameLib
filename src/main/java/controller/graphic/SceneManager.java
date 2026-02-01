@@ -44,8 +44,8 @@ public class SceneManager {
 
             Object controller = loader.getController();
 
-            if (controller instanceof AddGameController && bean != null) {
-                ((AddGameController) controller).setGameBean(bean);
+            if (controller instanceof AddGameController addGameController && bean != null) {
+                addGameController.setGameBean(bean);
             }
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -1,14 +1,13 @@
 package model.game;
 
 import connection.ConnectionFactory;
-import factoryDAO.FactoryDAO;
-import filePathClasses.PropertyPath;
+import factory_dao.FactoryDAO;
+import file_path_classes.PropertyPath;
 import model.user.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -26,7 +25,7 @@ public class GameDBDAO extends GameDAO{
     }
 
     private static final List<Game> gameList = new ArrayList<>();
-    private final static Logger LOGGER = LoggerFactory.getLogger(GameDBDAO.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GameDBDAO.class);
 
     @Override
     public Game getGame(String title, String publisher){

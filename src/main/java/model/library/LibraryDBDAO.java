@@ -1,8 +1,8 @@
 package model.library;
 
 import connection.ConnectionFactory;
-import factoryDAO.FactoryDAO;
-import filePathClasses.PropertyPath;
+import factory_dao.FactoryDAO;
+import file_path_classes.PropertyPath;
 import model.user.Buyer;
 import model.game.Game;
 import org.slf4j.Logger;

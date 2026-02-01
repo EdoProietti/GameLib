@@ -1,6 +1,6 @@
 package model.user;
 
-import factoryDAO.FactoryDAO;
+import factory_dao.FactoryDAO;
 import model.game.Game;
 import model.notify.Notify;
 

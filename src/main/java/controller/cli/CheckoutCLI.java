@@ -14,10 +14,7 @@ public class CheckoutCLI {
 
     public void handleCheckout() {
         System.out.println("\n" + "=".repeat(40));
-        System.out.println("          CHECKOUT - PAGAMENTO");
-        System.out.println("=".repeat(40));
-        System.out.println("[Digitare 'b' per tornare al carrello]");
-        System.out.print("Intestatario Carta (Nome Cognome): ");
+        System.out.print("          CHECKOUT - PAGAMENTO\n[Digitare 'b' per tornare al carrello]\nIntestatario Carta (Nome Cognome): ");
         String holder = scanner.nextLine();
         if (holder.equalsIgnoreCase("b")) return;
         System.out.print("Numero Carta (16 cifre): ");
@@ -42,12 +39,10 @@ public class CheckoutCLI {
 
     private void confirmPayment(String holder, String num, String exp, String cvv) {
         System.out.println("\n" + "-".repeat(40));
-        System.out.println("Riepilogo Inserimento:");
-        System.out.println("Titolare: " + holder);
+        System.out.println("Riepilogo Inserimento:\nTitolare: " + holder);
         String maskedCard = "**** **** **** " + (num.length() > 4 ? num.substring(num.length() - 4) : "****");
-        System.out.println("Carta: " + maskedCard);
+        System.out.println("Carta: " + maskedCard+"\nConfermare il pagamento definitivo? (s/n): ");
 
-        System.out.print("\nConfermare il pagamento definitivo? (s/n): ");
         if (scanner.nextLine().equalsIgnoreCase("s")) {
             PaymentBean pay = new PaymentBean();
             pay.setNameSurname(holder);

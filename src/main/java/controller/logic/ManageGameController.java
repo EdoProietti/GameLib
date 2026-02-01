@@ -1,7 +1,7 @@
 package controller.logic;
 
 import bean.GameBean;
-import factoryDAO.FactoryDAO;
+import factory_dao.FactoryDAO;
 import model.game.Genre;
 import model.game.Platform;
 import model.user.Publisher;
@@ -11,7 +11,6 @@ import model.game.Game;
 import session.SessionManager;
 import exception.*;
 
-import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
