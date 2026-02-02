@@ -10,8 +10,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PublisherGameController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PublisherGameController.class);
+
     @FXML private TableView<GameBean> inventoryTable;
     @FXML private TableColumn<GameBean, String> colTitle;
     @FXML private TableColumn<GameBean, String> colGenre;
@@ -33,7 +38,7 @@ public class PublisherGameController {
             setupActionColumn();
             inventoryTable.setItems(data);
         }catch (UserTypeMissmatch e) {
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
             AuthController a = new AuthController();
             a.logoutUser();
         }

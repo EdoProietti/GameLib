@@ -10,10 +10,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class BuyerLibraryController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BuyerLibraryController.class);
 
     @FXML private FlowPane gamesGrid;
 
@@ -54,7 +58,7 @@ public class BuyerLibraryController {
 
         Button playBtn = new Button("GIOCA");
         playBtn.setOnAction(event -> {
-            System.out.println("Feature non supportata.");
+            LOGGER.info("Funzione non supportata.");
         });
         playBtn.setStyle("-fx-background-color: #00d4ff; -fx-text-fill: #1e1e2f; -fx-font-weight: bold; -fx-background-radius: 15;");
         playBtn.setPrefWidth(120);

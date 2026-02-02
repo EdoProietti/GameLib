@@ -7,9 +7,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import file_path_classes.FileStorageConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserFSysDAO extends UserDAO{
 
+    private final static Logger LOGGER = LoggerFactory.getLogger(UserFSysDAO.class);
     private final File fileBuyer = FileStorageConfig.getBuyerFilePath().toFile();
     private final File filePublisher = FileStorageConfig.getPublisherFilePath().toFile();
 
@@ -31,7 +34,7 @@ public class UserFSysDAO extends UserDAO{
                 buyers.add((Buyer) user);
                 gson.toJson(buyers, writer);
             }catch(IOException e){
-                System.out.println(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         }else{
             List<Publisher> publishers = getAllPublishers();
@@ -39,7 +42,7 @@ public class UserFSysDAO extends UserDAO{
                 publishers.add((Publisher) user);
                 gson.toJson(publishers, writer);
             }catch(IOException e){
-                System.out.println(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         }
     }
@@ -56,7 +59,7 @@ public class UserFSysDAO extends UserDAO{
                 }
             }
         }catch(IOException e){
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
         return null;
     }
@@ -72,7 +75,7 @@ public class UserFSysDAO extends UserDAO{
                 }
             }
         }catch(IOException e){
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
         return null;
     }
@@ -83,7 +86,7 @@ public class UserFSysDAO extends UserDAO{
             Gson gson = new Gson();
             return gson.fromJson(reader, type);
         }catch(IOException e){
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
         return new ArrayList<>();
     }
@@ -94,7 +97,7 @@ public class UserFSysDAO extends UserDAO{
             Gson gson = new Gson();
             return gson.fromJson(reader, type);
         }catch(IOException e){
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
         return new ArrayList<>();
     }

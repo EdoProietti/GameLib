@@ -6,12 +6,17 @@ import model.game.Game;
 import model.user.Buyer;
 
 import com.google.gson.reflect.TypeToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryFSysDAO extends LibraryDAO {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(LibraryFSysDAO.class);
 
     public LibraryFSysDAO() {
         super();
@@ -32,7 +37,7 @@ public class LibraryFSysDAO extends LibraryDAO {
             }
             return new Library();
         }catch(IOException e){
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
         return null;
     }
@@ -53,7 +58,7 @@ public class LibraryFSysDAO extends LibraryDAO {
                 Gson gson = new Gson();
                 gson.toJson(newBuyers, writer);
             } catch(IOException e){
-                System.out.println(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         }
     }
@@ -63,8 +68,8 @@ public class LibraryFSysDAO extends LibraryDAO {
             Type type = new TypeToken<ArrayList<Buyer>>(){}.getType();
             return new Gson().fromJson(reader, type);
         } catch(IOException e){
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
-        return null;
+        return new ArrayList<>();
     }
 }

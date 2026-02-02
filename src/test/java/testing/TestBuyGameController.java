@@ -26,7 +26,7 @@ public class TestBuyGameController {
     private static Buyer b;
 
     @BeforeAll
-    public static void beforeAll() {
+    static void beforeAll() {
         FactoryDAO factoryDAO = new MemoryDAO();
         Publisher p = new Publisher("username", "password");
         Game game = new Game("title", BigDecimal.valueOf(20.0), p, Genre.FPS, Platform.PC);
@@ -41,7 +41,7 @@ public class TestBuyGameController {
     }
 
     @Test
-    public void testAddGameToCartGameFound(){
+     void testAddGameToCartGameFound(){
         int test = 0;
         GameBean gameBean = new GameBean();
         gameBean.setTitle("title");
@@ -61,7 +61,7 @@ public class TestBuyGameController {
     }
 
     @Test
-    public void testAddGameToCartGameNotFound(){
+     void testAddGameToCartGameNotFound(){
         int test = 0;
         GameBean gameBean = new GameBean();
         gameBean.setTitle("title1");
@@ -71,8 +71,8 @@ public class TestBuyGameController {
             bc.addGameToCart(gameBean);
             List<Game> items = b.getCart().getItems();
             if(!items.isEmpty()){
-                for(Game g : items){
-                    if(g.getTitle().equals(gameBean.getTitle())){
+                for(Game game : items){
+                    if(game.getTitle().equals(gameBean.getTitle())){
                         test = 1;
                         break;
                     }

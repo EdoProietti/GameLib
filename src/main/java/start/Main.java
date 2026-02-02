@@ -25,13 +25,13 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();
-
         } catch (Exception e) {
             System.out.println("Errore fatale: Impossibile caricare la Home Page.");
         }
     }
 
-    public static void main(String[] args) {
+    // utilizzando questo metodo senza classe Launcher, il programma non riesce a caricare le risorse JavaFX
+    public static void startApplication(String[] args) {
         FactoryDAO.getInstance().createUserDAO();
         FactoryDAO.getInstance().createGameDAO();
         FactoryDAO.getInstance().createLibraryDAO();
@@ -40,13 +40,11 @@ public class Main extends Application {
             Properties prop = new Properties();
             prop.load(input);
             String graphic =  prop.getProperty("INTERFACE_TYPE");
-            switch (graphic){
-                case "cli":
-                    HomeCLI homeCLI = new HomeCLI();
-                    homeCLI.startHomepage();
-                    break;
-                default:
-                    launch(args);
+            if (graphic.equals("cli")) {
+                HomeCLI homeCLI = new HomeCLI();
+                homeCLI.startHomepage();
+            } else {
+                launch(args);
             }
         }catch(IOException ex){
             System.out.println(ex.getMessage());

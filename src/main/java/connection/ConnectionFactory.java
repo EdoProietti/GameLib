@@ -1,5 +1,8 @@
 package connection;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +14,7 @@ import java.util.Properties;
 public class ConnectionFactory {
     private static ConnectionFactory instance;
     private Connection connection;
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionFactory.class);
 
     private ConnectionFactory() {
         this.connection = null;
@@ -33,7 +37,7 @@ public class ConnectionFactory {
                 String pass = properties.getProperty("PASS");
                 connection = DriverManager.getConnection(connectionUrl, user, pass);
             } catch (IOException | SQLException e) {
-                System.out.println("Error during connection to database: " + e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         }
         return connection;

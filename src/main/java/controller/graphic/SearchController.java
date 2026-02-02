@@ -54,9 +54,12 @@ public class SearchController {
 
     @FXML
     private void executeSearch() {
-        String title = searchField.getText();
-        resultsPane.getChildren().clear();
 
+        String title = searchField.getText();
+        if(title == null || title.isEmpty()){
+            return;
+        }
+        resultsPane.getChildren().clear();
         String genre = (filterGenre.getValue() != null) ? filterGenre.getValue() : ALL;
         String platform = (filterPlatform.getValue() != null) ? filterPlatform.getValue() : ALL;
         BigDecimal maxPrice = BigDecimal.valueOf(priceSlider.getValue());

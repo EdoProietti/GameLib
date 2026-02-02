@@ -11,7 +11,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import exception.NotifyException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +21,8 @@ import java.util.List;
 import java.util.Properties;
 
 public class NotifyDBDAO extends NotifyDAO{
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(NotifyDBDAO.class);
 
     private static final HashMap<String, List<Notify>> notifications = new HashMap<>();
 
@@ -61,11 +65,10 @@ public class NotifyDBDAO extends NotifyDAO{
                 }
             }
             return notifyList;
-        } catch(IOException e){
-            throw new NotifyException("Errore nell'apertura del file query.properties.");
-        } catch(SQLException e){
-            throw new NotifyException("Errore sql: "+e.getMessage());
+        } catch(IOException | SQLException e){
+            LOGGER.error(e.getMessage());
         }
+        return new ArrayList<>();
     }
 
     @Override
@@ -73,7 +76,6 @@ public class NotifyDBDAO extends NotifyDAO{
         try(FileInputStream input = new FileInputStream(PropertyPath.getQueryPath())){
             Properties prop = new Properties();
             prop.load(input);
-            // AGGIUNGERE QUERY PER SAPERE QUANTE COPIE SONO STATE VENDUTE.
             Connection conn = ConnectionFactory.getInstance().getConnection();
             PreparedStatement preparedStatement = conn.prepareStatement(prop.getProperty("GET_GAME_NOTIFY"));
             preparedStatement.setString(1, notify.getGame().getTitle());
@@ -93,10 +95,8 @@ public class NotifyDBDAO extends NotifyDAO{
                 saveNotifyOnDB(n);
             }
             preparedStatement.execute();
-        }catch(SQLException e){
-            throw new NotifyException("Errore sql addNotify: "+e.getMessage());
-        } catch(IOException e){
-            throw new NotifyException("Errore nell'apertura del file query.properties.");
+        }catch(SQLException | IOException e){
+            LOGGER.error(e.getMessage());
         }
     }
 
@@ -110,11 +110,8 @@ public class NotifyDBDAO extends NotifyDAO{
             preparedStatement.setString(2, n.getGame().getTitle());
             preparedStatement.setString(3, n.getGame().getPublisher().getUsername());
             preparedStatement.execute();
-        }catch(IOException e){
-            throw new NotifyException("Errore nell'apertura del file query.properties.");
-        }catch (SQLException e){
-            System.out.println(n.getGame().getTitle()+n.getGame().getPublisher().getUsername());
-            throw new NotifyException("Errore sql: "+e.getMessage());
+        }catch(IOException | SQLException e){
+            LOGGER.error(e.getMessage());
         }
     }
 }

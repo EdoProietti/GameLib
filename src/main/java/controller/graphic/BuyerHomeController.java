@@ -16,7 +16,6 @@ public class BuyerHomeController {
 
     @FXML
     public void initialize() {
-        System.out.println("Home Utente inizializzata.");
         userName.setText(AuthController.getLoggedUserBean().getUsername());
     }
 

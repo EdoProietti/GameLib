@@ -70,6 +70,10 @@ public class SearchCLI {
         }
         searchBean.setPrice(BigDecimal.valueOf(maxPrice));
         searchBean.setTitle(searchQuery);
+        if(searchQuery.isEmpty()) {
+            System.out.println("Inserisci il nome del gioco");
+            return;
+        }
         List<GameBean> gameBeans = new BuyGameController().searchGame(searchBean);
         lastSearchGame.clear();
         for(int i = 0; i < gameBeans.size(); i++){
