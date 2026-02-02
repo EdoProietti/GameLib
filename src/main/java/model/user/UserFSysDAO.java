@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 public class UserFSysDAO extends UserDAO{
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(UserFSysDAO.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserFSysDAO.class);
     private final File fileBuyer = FileStorageConfig.getBuyerFilePath().toFile();
     private final File filePublisher = FileStorageConfig.getPublisherFilePath().toFile();
 
