@@ -11,7 +11,7 @@ import model.user.UserMemoryDAO;
 
 public class MemoryDAO extends FactoryDAO {
 
-    protected MemoryDAO() {
+    public MemoryDAO() {
         super();
     }
 

@@ -26,7 +26,7 @@ public class BuyGameController {
         Buyer buyer = getBuyer();
         Game game = FactoryDAO.getInstance().createGameDAO().getGame(gameBean.getTitle(), gameBean.getPublisher());
         Library library = buyer.getLibrary();
-        if(!library.isInLibrary(game)){
+        if(!library.isInLibrary(game) && game != null){
             buyer.getCart().addGame(game);
         }
     }

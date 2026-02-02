@@ -44,6 +44,11 @@ public abstract class FactoryDAO {
         return instance;
     }
 
+    // utilizzato nei test
+    public static void setInstance(FactoryDAO i){
+        instance = i;
+    }
+
     public abstract UserDAO createUserDAO();
     public abstract LibraryDAO createLibraryDAO();
     public abstract NotifyDAO createNotifyDAO();
