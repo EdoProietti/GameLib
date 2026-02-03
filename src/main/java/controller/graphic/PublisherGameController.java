@@ -48,10 +48,10 @@ public class PublisherGameController {
         colActions.setCellFactory(param -> new EditButtonCell());
     }
 
-    // Classe interna per gestire la cella con il bottone
+    // classe interna per gestire la cella con il bottone
     private class EditButtonCell extends TableCell<GameBean, Void> {
         private final Button editBtn = new Button("Modifica");
-        // costruttore della classe che crea il bottone di rimozione
+        // costruttore della classe che crea il bottone di modifica
         public EditButtonCell() {
             editBtn.setStyle("-fx-background-color: #00d4ff; -fx-text-fill: #1e1e2f; -fx-font-weight: bold; -fx-background-radius: 10;");
             editBtn.setOnAction(event -> {

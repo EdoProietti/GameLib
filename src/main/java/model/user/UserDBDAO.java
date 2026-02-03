@@ -46,8 +46,9 @@ public class UserDBDAO extends UserDAO{
                 list.put(b.getUsername(), b);
                 return b;
             }
-        } catch(IOException | SQLException   e){
-            LOGGER.error(e.getMessage());
+        } catch(IOException | SQLException e){
+            // nel caso di register viene sollevata un'eccezione se non viene trovato l'utente da registrare
+            LOGGER.info(e.getMessage());
         }
         return null;
     }

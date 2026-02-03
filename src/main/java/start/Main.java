@@ -15,20 +15,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 
-public class Main extends Application {
-    @Override
-    public void start(Stage primaryStage){
-        try{
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/Homepage.fxml")));
-            Scene scene = new Scene(root);
-            primaryStage.setTitle("GameLib - La tua Libreria Videogiochi");
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (Exception e) {
-            System.out.println("Errore fatale: Impossibile caricare la Home Page.");
-        }
-    }
+public class Main extends Application{
 
     // utilizzando questo metodo senza classe Launcher, il programma non riesce a caricare le risorse JavaFX
     public static void startApplication(String[] args) {
@@ -48,6 +35,21 @@ public class Main extends Application {
             }
         }catch(IOException ex){
             System.out.println(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/Homepage.fxml")));
+            Scene scene = new Scene(root);
+            primaryStage.setTitle("GameLib - La tua Libreria Videogiochi");
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+            primaryStage.show();
+        } catch (Exception e) {
+            System.err.println("Errore fatale: Impossibile caricare la Home Page.");
+            e.printStackTrace();
         }
     }
 }
