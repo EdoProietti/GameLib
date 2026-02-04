@@ -49,7 +49,6 @@ public class Main extends Application{
             primaryStage.show();
         } catch (Exception e) {
             System.err.println("Errore fatale: Impossibile caricare la Home Page.");
-            e.printStackTrace();
         }
     }
 }
