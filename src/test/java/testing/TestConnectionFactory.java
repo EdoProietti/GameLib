@@ -6,7 +6,7 @@ import java.sql.Connection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestConnectionFactory {
+class TestConnectionFactory {
 
     @Test
     void testGetInstanceNotNull(){

@@ -13,7 +13,7 @@ import session.SessionManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestAuthController {
+class TestAuthController {
 
     private static Buyer b;
     private static MemoryDAO m;

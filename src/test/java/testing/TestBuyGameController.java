@@ -20,7 +20,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class TestBuyGameController {
+class TestBuyGameController {
 
     private static Game g;
     private static Buyer b;
