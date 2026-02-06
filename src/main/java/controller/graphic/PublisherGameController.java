@@ -35,45 +35,12 @@ public class PublisherGameController {
             ObservableList<GameBean> data = FXCollections.observableArrayList();
             ManageGameController manage = new ManageGameController();
             data.addAll(manage.getGameList());
-            setupActionColumn();
             inventoryTable.setItems(data);
         }catch (UserTypeMissmatch e) {
             LOGGER.error(e.getMessage());
             AuthController a = new AuthController();
             a.logoutUser();
         }
-    }
-
-    private void setupActionColumn() {
-        colActions.setCellFactory(param -> new EditButtonCell());
-    }
-
-    // classe interna per gestire la cella con il bottone
-    private class EditButtonCell extends TableCell<GameBean, Void> {
-        private final Button editBtn = new Button("Modifica");
-        // costruttore della classe che crea il bottone di modifica
-        public EditButtonCell() {
-            editBtn.setStyle("-fx-background-color: #00d4ff; -fx-text-fill: #1e1e2f; -fx-font-weight: bold; -fx-background-radius: 10;");
-            editBtn.setOnAction(event -> {
-                GameBean selected = getTableView().getItems().get(getIndex());
-                handleEdit(event, selected);
-            });
-        }
-
-        @Override
-        protected void updateItem(Void item, boolean empty) {
-            super.updateItem(item, empty);
-            // Se la cella è vuota non mostro nulla, altrimenti mostriamo il bottone
-            if (empty) {
-                setGraphic(null);
-            } else {
-                setGraphic(editBtn);
-            }
-        }
-    }
-
-    private void handleEdit(ActionEvent event, GameBean bean) {
-        SceneManager.switchToEditGame(event, "/view/AddNewGame.fxml", bean);
     }
 
     @FXML

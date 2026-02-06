@@ -1,7 +1,6 @@
 package controller.graphic;
 
 import bean.CartBean;
-import bean.GameBean;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -33,25 +32,6 @@ public class SceneManager {
             stage.show();
 
         } catch (IOException | NullPointerException e) {
-            LOGGER.error(e.getMessage());
-        }
-    }
-
-    public static void switchToEditGame(Event event, String fxmlPath, GameBean bean) {
-        try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlPath));
-            Parent root = loader.load();
-
-            Object controller = loader.getController();
-
-            if (controller instanceof AddGameController addGameController && bean != null) {
-                addGameController.setGameBean(bean);
-            }
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
             LOGGER.error(e.getMessage());
         }
     }
